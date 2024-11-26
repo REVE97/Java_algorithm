@@ -1,7 +1,17 @@
+//solved.ac_class01
+
+//p.1000
 package class01;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]){
-        System.out.println(1+3);
+
+        Scanner sc = new Scanner(System.in);
+        int A= sc.nextInt();
+        int B= sc.nextInt();
+
+        System.out.println(A+B);
     }
 }
