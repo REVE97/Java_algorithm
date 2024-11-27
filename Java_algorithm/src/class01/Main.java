@@ -1,5 +1,9 @@
 //solved.ac_class01
 
+//FeedBack 2024.11.27
+//StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
+//p.10871 수정필요함
+
 package class01; //패키지 선언
 
 /*p.1000
@@ -265,8 +269,8 @@ public class Main{
 }*/
 
 //p.10871 수정필요
-//StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -294,3 +298,82 @@ public class Main{
         }
     }
 }
+*/
+
+/*p.10950
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine());
+        int arr[] = new int[T];
+
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            arr[i]= A+B;
+        }
+
+        for(int j=0;j<T;j++){
+            System.out.println(arr[j]);
+        }
+    }
+}*/
+
+/*p.10951
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
+        String line;
+
+        while((line=br.readLine())!=null) {
+            st = new StringTokenizer(line);
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            sb.append(A+B).append("\n");
+        }
+        System.out.print(sb);
+    }
+}*/
+
+/*p.10952
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        while(true){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            if((A!=0)&&(B!=0))
+                sb.append(A+B).append("\n");
+
+            if((A==0)&&(B==0))
+                break;
+        }
+    System.out.print(sb);
+    }
+}*/
+
