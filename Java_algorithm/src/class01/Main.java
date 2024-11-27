@@ -3,6 +3,7 @@
 //FeedBack 2024.11.27
 //StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
 //p.10871 수정필요함
+//아스키 코드 학습 필요
 
 package class01; //패키지 선언
 
@@ -377,3 +378,21 @@ public class Main{
     }
 }*/
 
+/*p.10998
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+
+        System.out.print(A*B);
+    }
+}*/
