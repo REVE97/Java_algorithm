@@ -228,3 +228,69 @@ public class Main{
         System.out.println(" \\(__)|");
     }
 }*/
+
+/*p.10172
+
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("|\\_/|");
+        System.out.println("|q p|   /}");
+        System.out.println("( 0 )\"\"\"\\");
+        System.out.println("|\"^\"`    |");
+        System.out.println("||_/=\\\\__|");
+    }
+}*/
+
+/*p.10869
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int A = Integer.parseInt(st.nextToken());
+        int B = Integer.parseInt(st.nextToken());
+
+        System.out.println(A+B);
+        System.out.println(A-B);
+        System.out.println(A*B);
+        System.out.println(A/B);
+        System.out.println(A%B);
+    }
+}*/
+
+//p.10871 수정필요
+//StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int X = Integer.parseInt(st.nextToken());
+
+        int arr[] = new int[N];
+
+        for(int i=0;i<N;i++){
+            StringTokenizer sk = new StringTokenizer(br.readLine());
+            arr[i] = Integer.parseInt(sk.nextToken());
+        }
+
+        for(int j=0;j<N;j++){
+            if(arr[j]<X){
+                System.out.print(arr[j]+" ");
+            }
+        }
+    }
+}
