@@ -1,9 +1,13 @@
 //solved.ac_class01
 
 //FeedBack 2024.11.27
-//StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
-//p.10871 수정필요함
-//아스키 코드 학습 필요
+//1. StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
+//2. p.10871 수정필요함 (2024.11.28 수정완료)
+//3. 아스키 코드 학습 필요 (2024.11.28 학습완료)
+
+//FeedBack 2024.11.28
+//1. 문자열에서 문자 추출 : String.charAt() 메소드 사용 ex. string 변수명.charAt(N)
+//2. 문자 - 숫자 (아스키코드 변경) : 문자열 선언 후 String.charAt()으로 문자로 변경, (int)사용하여 형변환 후 출력
 
 package class01; //패키지 선언
 
@@ -269,9 +273,8 @@ public class Main{
     }
 }*/
 
-//p.10871 수정필요
+/*p.10871
 
-/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -280,6 +283,7 @@ import java.util.StringTokenizer;
 public class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int N = Integer.parseInt(st.nextToken());
@@ -287,19 +291,21 @@ public class Main{
 
         int arr[] = new int[N];
 
+        StringTokenizer sk = new StringTokenizer(br.readLine());
+
         for(int i=0;i<N;i++){
-            StringTokenizer sk = new StringTokenizer(br.readLine());
-            arr[i] = Integer.parseInt(sk.nextToken());
+            arr[i]=Integer.parseInt(sk.nextToken());
         }
 
         for(int j=0;j<N;j++){
             if(arr[j]<X){
-                System.out.print(arr[j]+" ");
+                sb.append(arr[j]).append(" ");
             }
         }
+
+        System.out.print(sb);
     }
-}
-*/
+}*/
 
 /*p.10950
 import java.io.BufferedReader;
@@ -396,3 +402,50 @@ public class Main{
         System.out.print(A*B);
     }
 }*/
+
+/*p.25083
+
+public class Main{
+    public static void main(String[] args){
+        System.out.println("         ,r'\"7");
+        System.out.println("r`-_   ,'  ,/");
+        System.out.println(" \\. \". L_r'");
+        System.out.println("   `~\\/");
+        System.out.println("      |");
+        System.out.println("      |");
+    }
+}*/
+
+/*p.27866
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String S = br.readLine();
+        int i = Integer.parseInt(br.readLine());
+
+        System.out.print(S.charAt(i-1));
+    }
+}*/
+
+//p.11654
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String s = br.readLine();
+        char c = s.charAt(0);
+        int i = (int)c;
+
+        System.out.print(i);
+    }
+}
