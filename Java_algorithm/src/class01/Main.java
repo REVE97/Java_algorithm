@@ -9,6 +9,8 @@
 //1. 문자열에서 문자 추출 : String.charAt() 메소드 사용 ex. string 변수명.charAt(N)
 //2. 문자 - 숫자 (아스키코드 변경) : 문자열 선언 후 String.charAt()으로 문자로 변경, (int)사용하여 형변환 후 출력
 //아스키코드에서 숫자값을 정수로 반환할 때 에는 아스키코드 -'0'or -48 을 한다
+//3. StringTokenizer : StringTokenizer(매개변수, 구분할 구분자)으로 사용 
+//st.countTokens() 메소드로 현재 남아있는 토큰 갯수 확인 가능 ex.1152번 문제
 package class01; //패키지 선언
 
 /*p.1000
@@ -523,7 +525,7 @@ public class Main{
     }
 }*/
 
-//p.2562 수정필요
+/*p.2562 수정필요
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -544,10 +546,121 @@ public class Main{
         for(int j=0; j<arr.length; j++){
             if(max<arr[j]){
                 max=arr[j];
-                index=j;
+                index=j+1;
             }
         }
         System.out.println(max);
         System.out.println(index);
+    }
+}*/
+
+/*p.2884
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int H = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        
+        //M에서 45뺄때 -가 되면 M+60에서 -처리하고 H에서 1빼기
+
+        if((M-45)<0){
+            H = H-1;
+            M = M+60;
+            M = M-45;
+            if(H<0){
+                H=H+24;
+            }
+        } else {
+            M = M-45;
+        }
+        System.out.print(H+" "+M);
+    }
+}*/
+
+/*p.10818
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        for(int i=0;i<arr.length;i++){
+            arr[i]=Integer.parseInt(st.nextToken());
+        }
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<min){
+                min=arr[i];
+            }
+            if(arr[i]>max){
+                max=arr[i];
+            }
+        }
+        System.out.print(min+" "+max);
+    }
+}*/
+
+/*p.1152
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int count = st.countTokens();
+        System.out.print(count);
+    }
+}*/
+
+//p.2577
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int A = Integer.parseInt(br.readLine());
+        int B = Integer.parseInt(br.readLine());
+        int C = Integer.parseInt(br.readLine());
+
+        int result = (A*B*C);
+        
+        //첫째 줄에는 0이 몇번 쓰였는지 1~9가 각각 몇 번 쓰였는지 결과 출력
+        String s = String.valueOf(result); //문자열로 변경
+
+        //중첩 반복문으로 풀기
+        for(int i=0;i<10;i++){
+            int count=0;
+            for(int j=0;j<s.length();j++){
+                if((s.charAt(j)-'0')==i){
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
     }
 }
