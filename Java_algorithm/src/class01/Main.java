@@ -8,7 +8,7 @@
 //FeedBack 2024.11.28
 //1. 문자열에서 문자 추출 : String.charAt() 메소드 사용 ex. string 변수명.charAt(N)
 //2. 문자 - 숫자 (아스키코드 변경) : 문자열 선언 후 String.charAt()으로 문자로 변경, (int)사용하여 형변환 후 출력
-
+//아스키코드에서 숫자값을 정수로 반환할 때 에는 아스키코드 -'0'or -48 을 한다
 package class01; //패키지 선언
 
 /*p.1000
@@ -433,7 +433,7 @@ public class Main{
     }
 }*/
 
-//p.11654
+/*p.11654
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -447,5 +447,107 @@ public class Main{
         int i = (int)c;
 
         System.out.print(i);
+    }
+}*/
+
+/*p.2439
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+
+        for(int i=1;i<=N;i++){
+            for(int j=1;j<=N-i;j++){
+                System.out.print(" ");
+            }
+            for(int k=1;k<=i;k++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}*/
+
+/*p.11720
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+
+        String S = br.readLine();
+
+        int arr[] = new int[N];
+        int sum=0;
+
+        for(int i=0;i<N;i++){
+            arr[i] = S.charAt(i)-'0';
+            sum+=arr[i];
+        }
+        System.out.print(sum);
+    }
+}*/
+
+/*p.31403
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int A = Integer.parseInt(br.readLine());
+        int B = Integer.parseInt(br.readLine());
+        int C = Integer.parseInt(br.readLine());
+
+        String S="";
+        S+=A;
+        S+=B;
+        int e = Integer.parseInt(S);
+
+        System.out.println(A+B-C);
+        System.out.print(e-C);
+    }
+}*/
+
+//p.2562 수정필요
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int arr[] = new int[9];
+        int max = 0;
+        int index = 0;
+
+        for(int i=0;i<arr.length;i++){
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        for(int j=0; j<arr.length; j++){
+            if(max<arr[j]){
+                max=arr[j];
+                index=j;
+            }
+        }
+        System.out.println(max);
+        System.out.println(index);
     }
 }
