@@ -633,8 +633,7 @@ public class Main{
     }
 }*/
 
-//p.2577
-
+/*p.2577
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -662,5 +661,34 @@ public class Main{
             }
             System.out.println(count);
         }
+    }
+}*/
+
+//p.10250
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // T: 테스트 H: 호텔 층수 W : 호텔 방 수 N: 몇번째 손님
+        int T = Integer.parseInt(br.readLine()); // 테스트 횟수
+        int arr[] = new int[T]
+
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            
+            int H = Integer.parseInt(st.nextToken());
+            int W = Integer.parseInt(st.nextToken());
+            int N = Integer.parseInt(st.nextToken());
+            //무조건 W 값이 작은 순서대로 선호, 단 W 값이 같을때는 H 작은 값을 선호
+            //출력값은 HHWW 값으로 출력
+            //결과값 arr[i]에 저장 후 출력
+            
+        }
+
     }
 }
