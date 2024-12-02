@@ -1,16 +1,20 @@
 //solved.ac_class01
 
-//FeedBack 2024.11.27
+//FeedBack
+//2024.11.27
 //1. StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
 //2. p.10871 수정필요함 (2024.11.28 수정완료)
 //3. 아스키 코드 학습 필요 (2024.11.28 학습완료)
 
-//FeedBack 2024.11.28
+//2024.11.28
 //1. 문자열에서 문자 추출 : String.charAt() 메소드 사용 ex. string 변수명.charAt(N)
 //2. 문자 - 숫자 (아스키코드 변경) : 문자열 선언 후 String.charAt()으로 문자로 변경, (int)사용하여 형변환 후 출력
 //아스키코드에서 숫자값을 정수로 반환할 때 에는 아스키코드 -'0'or -48 을 한다
 //3. StringTokenizer : StringTokenizer(매개변수, 구분할 구분자)으로 사용 
 //st.countTokens() 메소드로 현재 남아있는 토큰 갯수 확인 가능 ex.1152번 문제
+
+//2024.12.02
+//1. 10250번 문제 수정 필요
 package class01; //패키지 선언
 
 /*p.1000
@@ -664,7 +668,7 @@ public class Main{
     }
 }*/
 
-//p.10250
+/*p.10250 수정필요
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -690,5 +694,32 @@ public class Main{
             
         }
 
+    }
+}*/
+
+//p.2675
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); //테스트 케이스 수
+        String arr[] = new String[T];
+
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int R = Integer.parseInt(st.nextToken()); //반복횟수
+            String S = st.nextToken(); //반복 문자열
+
+            //String.charAt() 함수 써서 반복?
+
+        }
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
     }
 }
