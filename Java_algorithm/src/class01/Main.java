@@ -1,6 +1,6 @@
 //solved.ac_class01
 
-//FeedBack
+/*FeedBack
 //2024.11.27
 //1. StringTokenizer 개념 숙지, BufferedReader, Writer 개념 숙지, StringBuilder 숙지
 //2. p.10871 수정필요함 (2024.11.28 수정완료)
@@ -15,6 +15,12 @@
 
 //2024.12.02
 //1. 10250번 문제 수정 필요
+
+//2024.12.03
+//1. HashSet 클래스 사용 공부 필요
+//Hashset<변수 타입> 클래스명 = new HashSet<>()으로 사용
+
+*/
 package class01; //패키지 선언
 
 /*p.1000
@@ -697,7 +703,7 @@ public class Main{
     }
 }*/
 
-//p.2675
+/*p.2675
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -709,7 +715,6 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int T = Integer.parseInt(br.readLine()); //테스트 케이스 수
-        String arr[] = new String[T];
 
         for(int i=0;i<T;i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -717,9 +722,71 @@ public class Main{
             String S = st.nextToken(); //반복 문자열
 
             //String.charAt() 함수 써서 반복?
-
+            for(int j=0;j<S.length();j++){
+                for(int k=0;k<R;k++){
+                    System.out.print(S.charAt(j));
+                }
+            }
+            System.out.println();
         }
-        System.out.println(arr[0]);
-        System.out.println(arr[1]);
+    }
+}*/
+
+/*p.2920
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int arr[] = new int[8];
+        String result = "";
+
+        for(int i=0;i<arr.length;i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        for(int j=0;j<arr.length-1;j++){
+            if(arr[j+1]-arr[j]==1){
+                result="ascending";
+            } else if (arr[j+1]-arr[j]==-1){
+                result="descending";
+            } else {
+                result="mixed";
+                break; //이 구문 하나 땜에 틀림..
+            }
+        }
+        System.out.print(result);
+    }
+}*/
+
+//p.3052
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int arr[] = new int[10];
+        int count=0;  //서로 다른 나머지 카운트수
+
+        for(int i=0;i<arr.length;i++){
+            arr[i]=Integer.parseInt(br.readLine())%42;
+        }
+
+        for(int i=0;i<arr.length-1;i++){
+            if(arr[i+1]!=arr[i]){
+                count++;
+            }
+        }
+        System.out.print(count);
     }
 }
