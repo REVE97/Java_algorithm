@@ -18,8 +18,8 @@
 
 //2024.12.03
 //1. HashSet 클래스 사용 공부 필요
-//Hashset<변수 타입> 클래스명 = new HashSet<>()으로 사용
-
+//Hashset<변수 타입> 클래스명 = new HashSet<>()으로 사용, 중복 없는 수 찾을 때 사용(.add(), .size() 메소드 이용)
+//cf) p.3052
 */
 package class01; //패키지 선언
 
@@ -765,7 +765,26 @@ public class Main{
     }
 }*/
 
-//p.3052
+/*p.3052
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        HashSet<Integer> hs = new HashSet<>();
+
+        for(int i=0;i<10;i++){
+            hs.add(Integer.parseInt(br.readLine())%42);
+        }
+
+        System.out.print(hs.size());
+    }
+}*/
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -775,18 +794,8 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int arr[] = new int[10];
-        int count=0;  //서로 다른 나머지 카운트수
+        String S = br.readLine();
 
-        for(int i=0;i<arr.length;i++){
-            arr[i]=Integer.parseInt(br.readLine())%42;
-        }
-
-        for(int i=0;i<arr.length-1;i++){
-            if(arr[i+1]!=arr[i]){
-                count++;
-            }
-        }
-        System.out.print(count);
+        //a~z까지 처음 등장하는 위치 공백으로 구분해서 출력 , 등장하지 않으면 -1 출력
     }
 }
