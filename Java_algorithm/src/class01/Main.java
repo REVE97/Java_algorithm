@@ -786,6 +786,42 @@ public class Main{
     }
 }*/
 
+/*p.10809
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String S = br.readLine();
+        int[] arr = new int[26]; // a~z의 위치를 저장할 배열
+
+        // 배열을 -1로 초기화 (아직 등장하지 않은 알파벳은 -1로 표시)
+        for (int i = 0; i < 26; i++) {
+            arr[i] = -1;
+        }
+
+        // 문자열 S에서 각 알파벳의 첫 등장 위치를 기록
+        for (int i = 0; i < S.length(); i++) {
+            char c = S.charAt(i);
+            int index = c - 'a'; // 'a'를 0으로 매핑
+            if (arr[index] == -1) { // 처음 등장한 경우에만 위치 기록
+                arr[index] = i;
+            }
+        }
+
+        // 결과 출력
+        for (int i = 0; i < 26; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}*/
+
+//p.8958
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -794,8 +830,7 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String S = br.readLine();
-
-        //a~z까지 처음 등장하는 위치 공백으로 구분해서 출력 , 등장하지 않으면 -1 출력
+        
     }
 }
+
