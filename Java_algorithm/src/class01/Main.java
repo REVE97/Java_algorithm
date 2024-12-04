@@ -674,7 +674,7 @@ public class Main{
     }
 }*/
 
-/*p.10250 수정필요
+//p.10250 수정필요
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -686,7 +686,10 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // T: 테스트 H: 호텔 층수 W : 호텔 방 수 N: 몇번째 손님
         int T = Integer.parseInt(br.readLine()); // 테스트 횟수
-        int arr[] = new int[T]
+        StringBuilder sb = new StringBuilder();
+
+        int arr[] = new int[T]; // 출력값 배열
+        int room = 1;
 
         for(int i=0;i<T;i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -694,14 +697,22 @@ public class Main{
             int H = Integer.parseInt(st.nextToken());
             int W = Integer.parseInt(st.nextToken());
             int N = Integer.parseInt(st.nextToken());
-            //무조건 W 값이 작은 순서대로 선호, 단 W 값이 같을때는 H 작은 값을 선호
-            //출력값은 HHWW 값으로 출력
-            //결과값 arr[i]에 저장 후 출력
-            
-        }
 
+            //무조건 W 값이 작은 순서대로 선호, 단 W 값이 같을때는 H 작은 값을 선호
+            //출력값은 HHWW 값으로 출력, 층은 *100, 호수 *1 계산?
+            //결과값 arr[i]에 저장 후 출력
+
+            // 층수와 호수 계산
+            int floor = (N % H == 0) ? H : (N % H); // 층 번호 계산
+            int roomNumber = (N + H - 1) / H;      // 호수 계산
+
+            // 결과를 문자열로 추가 (XXYY 형식)
+            sb.append(floor * 100 + roomNumber).append("\n");
+
+        }
+        System.out.print(sb);
     }
-}*/
+}
 
 /*p.2675
 
@@ -820,7 +831,7 @@ public class Main {
     }
 }*/
 
-//p.8958
+/*p.8958
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -830,7 +841,29 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        
+        int T = Integer.parseInt(br.readLine()); //테스트케이스 횟수
+        int arr[] = new int[T]; //출력용 배열
+
+        for(int i=0;i<T;i++){
+            String S = br.readLine();
+
+            int result = 0; //점수값
+            int count=1;
+
+            for(int j=0;j<S.length();j++){
+                if(S.charAt(j)=='O'){
+                    result=result+count;
+                    count++;
+                } else if(S.charAt(j)=='X'){
+                    count=1;
+                }
+            }
+            arr[i] = result;
+        }
+
+        for(int i=0;i<T;i++){
+            System.out.println(arr[i]);
+        }
     }
-}
+}*/
 
