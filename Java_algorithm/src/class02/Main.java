@@ -196,7 +196,7 @@ public class Main{
     }
 }*/
 
-//p.2869(달팽이 문제)
+/*p.2869(달팽이 문제)
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -208,12 +208,52 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int A = Integer.parseInt(st.nextToken()); //올라가는 길이
-        int B = Integer.parseInt(st.nextToken()); //내려오는 길이
-        int V = Integer.parseInt(st.nextToken()); //나무 높이
+        double A = Integer.parseInt(st.nextToken()); //올라가는 길이
+        double B = Integer.parseInt(st.nextToken()); //내려오는 길이
+        double V = Integer.parseInt(st.nextToken()); //나무 높이
 
-        int day = (V-B-1)/(A-B) +1;
+        double day = (V-B)/(A-B);
 
-        System.out.print(day);
+        System.out.print((int)Math.ceil(day));
+    }
+}*/
+
+//p.30802
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        //참가자의 수
+        int N = Integer.parseInt(br.readLine());
+
+        // 사이즈별 티셔츠 신청자 수
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int S = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int L = Integer.parseInt(st.nextToken());
+        int XL = Integer.parseInt(st.nextToken());
+        int XXL = Integer.parseInt(st.nextToken());
+        int XXXL = Integer.parseInt(st.nextToken());
+
+        //티셔츠 묶음, 펜 묶음
+        StringTokenizer sk = new StringTokenizer(br.readLine());
+        int T = Integer.parseInt(sk.nextToken());
+        int P = Integer.parseInt(sk.nextToken());
+
+        //출력 결과
+        //첫번째 줄에 티셔츠를 T장씩 최소 몇 묶음 주문해야 하는지 출력
+        //두번째 줄에 펜 P자루 씩 최대 몇 묶음 주문할 수 있는지, 그때 펜을 한 자루씩 몇개 주문하는지 출력
+        //조건: 티셔츠는 남아도 되지만 부족해서는 안되고 펜은 남거나 부족하지 않고 정확히 참가자 수 만큼 준비
+
+        int T_count=0; // 주문해야할 티셔츠 묶음 수
+        int P_count=0; // 주문해야할 펜 묶음 수
+
+
     }
 }
