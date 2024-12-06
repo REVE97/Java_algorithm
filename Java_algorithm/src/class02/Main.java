@@ -3,9 +3,14 @@
 
 //2024.12.05
 //1. Array 메소드 공부 필요
+//배열을 오름차순으로 정렬할때 : Arrays.sort(), 내림차순으로 정렬할때: Arrays.sort(배열명, Collections.reverseOrder())
+//단 Collections.reverseOrder()을 사용할 때 int[]가 아닌 Integer[]처럼 클래스로 객체가 선언해야함.
+//String 은 상관없음
 //2. 문제의 조건 자세히 나누기 필요
 //3. boolean 변수 공부 필요
 //4. 형변환 조심
+
+
  */
 
 package class02; //패키지 선언
@@ -130,7 +135,7 @@ public class Main{
     }
 }*/
 
-//p.2231
+/*p.2231
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -141,8 +146,74 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
+        int M =0; //출력 생성자
 
-        
+        //생성자 구하기
+        for (int i = 0; i < N; i++) {
+            int sum = i; // 생성자 후보 i
+            int temp = i;
 
+            // 각 자리수 합 계산
+            while (temp > 0) {
+                sum += temp % 10; // 각 자리수 더하기
+                temp /= 10; // 자리수를 줄임
+            }
+
+            // 분해합이 N이면 생성자를 찾음
+            if (sum == N) {
+                M = i;
+                break;
+            }
+        }
+        System.out.print(M);
+    }
+}*/
+
+/*p.10989
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N];
+
+        for(int i=0;i<N;i++){
+            arr[i]=Integer.parseInt(br.readLine());
+        }
+        Arrays.sort(arr); //오름차순 정렬
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<arr.length;i++){
+            sb.append(arr[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
+}*/
+
+//p.2869(달팽이 문제)
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int A = Integer.parseInt(st.nextToken()); //올라가는 길이
+        int B = Integer.parseInt(st.nextToken()); //내려오는 길이
+        int V = Integer.parseInt(st.nextToken()); //나무 높이
+
+        int day = (V-B-1)/(A-B) +1;
+
+        System.out.print(day);
     }
 }
