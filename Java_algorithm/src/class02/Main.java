@@ -300,10 +300,44 @@ public class Main{
 
 //p.2798
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main{
     public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken()); //카드의 개수
+        int M = Integer.parseInt(st.nextToken()); //숫자들의 최대합
+
+        int arr[] = new int[N];
+        int result = 0; //3개의 카드 합의 최대값
+
+        //N개의 카드 수
+        StringTokenizer sk = new StringTokenizer(br.readLine());
+        for(int i=0;i<arr.length;i++){
+            arr[i] = Integer.parseInt(sk.nextToken());
+        }
+        
+        //블랙잭 조건 완전 탐색 알고리즘
+        for(int i=0;i<N-2;i++){
+            for(int j=i+1;j<N-1;j++){
+                for(int k=j+1;k<N;k++){
+                    int temp=arr[i]+arr[j]+arr[k];
+
+                    if(M == temp){
+                        result=temp;
+                    }
+
+                    if((result<temp)&&(temp<M)){
+                        result=temp;
+                    }
+                }
+            }
+        }
+        System.out.println(result);
     }
 }
