@@ -218,7 +218,7 @@ public class Main{
     }
 }*/
 
-//p.30802
+/*p.30802
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -232,14 +232,13 @@ public class Main{
         //참가자의 수
         int N = Integer.parseInt(br.readLine());
 
+        int arr[] = new int[6];
+
         // 사이즈별 티셔츠 신청자 수
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int S = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int L = Integer.parseInt(st.nextToken());
-        int XL = Integer.parseInt(st.nextToken());
-        int XXL = Integer.parseInt(st.nextToken());
-        int XXXL = Integer.parseInt(st.nextToken());
+        for(int i=0;i<arr.length;i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
 
         //티셔츠 묶음, 펜 묶음
         StringTokenizer sk = new StringTokenizer(br.readLine());
@@ -252,8 +251,59 @@ public class Main{
         //조건: 티셔츠는 남아도 되지만 부족해서는 안되고 펜은 남거나 부족하지 않고 정확히 참가자 수 만큼 준비
 
         int T_count=0; // 주문해야할 티셔츠 묶음 수
-        int P_count=0; // 주문해야할 펜 묶음 수
+        for(int i=0;i<arr.length;i++){
+            if((arr[i]%T)!=0){
+                T_count+=arr[i]/T;
+                T_count+=1;
+            } else if((arr[i]%T)==0){
+                T_count+=arr[i]/T;
+            }
+        }
 
+        System.out.println(T_count); // 첫번째 줄 출력값
+        System.out.print(N/P+" "+N%P); // 두번째 줄 출력값
+    }
+}*/
+
+/*p.2609
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int num1 = Integer.parseInt(st.nextToken()); //첫번째 자연수
+        int num2 = Integer.parseInt(st.nextToken()); //두번째 자연수
+
+        int max = 1; //최대 공약수
+        int min; //최소 공배수
+
+        //최대 공약수 구하기
+        for(int i=1;i<=Math.max(num1,num2);i++){
+            if((num1%i==0)&&(num2%i==0)){
+                max=i;
+            }
+        }
+        
+        //최소 공배수 구하기
+        min=(num1*num2) / max;
+
+        System.out.println(max);
+        System.out.println(min);
+    }
+}*/
+
+//p.2798
+
+import java.io.IOException;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
 
     }
 }
