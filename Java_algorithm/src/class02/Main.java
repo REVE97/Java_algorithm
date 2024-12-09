@@ -4,7 +4,7 @@
 //2024.12.05
 //1. Array 메소드 공부 필요
 //배열을 오름차순으로 정렬할때 : Arrays.sort(), 내림차순으로 정렬할때: Arrays.sort(배열명, Collections.reverseOrder())
-//단 Collections.reverseOrder()을 사용할 때 int[]가 아닌 Integer[]처럼 클래스로 객체가 선언해야함.
+//단 Collections.reverseOrder()을 사용할 때 int[]가 아닌 Integer[]처럼 클래스로 객체가 선언해야함. (원시타입 사용 x)
 //String 은 상관없음
 //2. 문제의 조건 자세히 나누기 필요
 //3. boolean 변수 공부 필요
@@ -13,6 +13,7 @@
 //2024.12.09
 //1. 함수 선언 공부 필요 : public static 데이터형식 함수명(매개변수(parameter))으로 선언
 //2. 메소드 사용법 공부 필요 : 함수명(매개변수); 로 사용
+//3. 배열 정렬법 공부 필요
 
 */
 
@@ -372,8 +373,7 @@ public class Main{
     }
 }*/
 
-/*
-//p.11050
+/*p.11050
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -398,6 +398,32 @@ public class Main{
     }
 }*/
 
+/*p.2751
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 수의 개수
+        int[] arr = new int[N];
+
+        for(int i=0;i<N;i++){
+            arr[i]= Integer.parseInt(br.readLine());
+        }
+
+        Arrays.sort(arr);
+
+        for(int i=0;i<N;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}*/
+
 //p.1181
 
 import java.io.BufferedReader;
@@ -408,12 +434,7 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = Integer.parseInt(br.readLine());
-        String arr[] = new String[N];
 
-        for(int i=0;i<N;i++){
-            arr[i] = br.readLine();
-        }
 
     }
 }
