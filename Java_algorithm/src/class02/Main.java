@@ -298,7 +298,7 @@ public class Main{
     }
 }*/
 
-//p.2798
+/*p.2798
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -339,5 +339,78 @@ public class Main{
             }
         }
         System.out.println(result);
+    }
+}*/
+
+/*p.1259
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        while(true) {
+            String S = br.readLine();
+            StringBuilder sb = new StringBuilder(S);
+            String reverse = sb.reverse().toString();
+
+            if (S.equals("0")){
+                break;
+            }
+            if (S.equals(reverse)) {
+                System.out.println("yes");
+            } else {
+                System.out.println("no");
+            }
+        }
+    }
+}*/
+
+/*
+//p.11050
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        
+        System.out.println(factorial(N)/(factorial(N-K)*factorial(K)));
+    }
+    static int factorial(int N){
+        if(N==0){
+            return 1;
+        }
+        return N * factorial(N-1);
+    }
+}*/
+
+//p.1181
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        String arr[] = new String[N];
+
+        for(int i=0;i<N;i++){
+            arr[i] = br.readLine();
+        }
+        
     }
 }
