@@ -424,7 +424,7 @@ public class Main{
     }
 }*/
 
-//p.1181
+//p.2292
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -434,7 +434,25 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        int N = Integer.parseInt(br.readLine()); // 테스트 방 번호
 
+        //N:1 count:1 range: 1개
+        //N:2~7 count:2 range:6개
+        //N:8~19 count:3 range:12개 ~
 
+        //최종적으로 N에 맞는 count 출력
+        
+        int count=1; //방 개수
+        int range=2; //N의 개수 범위
+
+        if(N==1){
+            System.out.println(1);
+        } else {
+            while(range<=N){
+                range=range+(6*count);
+                count++;
+            }
+            System.out.println(count);
+        }
     }
 }
