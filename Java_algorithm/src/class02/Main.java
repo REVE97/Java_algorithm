@@ -424,7 +424,7 @@ public class Main{
     }
 }*/
 
-//p.2292
+/*p.2292
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -443,16 +443,50 @@ public class Main{
         //최종적으로 N에 맞는 count 출력
         
         int count=1; //방 개수
-        int range=2; //N의 개수 범위
+        int range=2; //방 번호 범위의 최솟값
 
         if(N==1){
             System.out.println(1);
         } else {
             while(range<=N){
-                range=range+(6*count);
-                count++;
+                range=range+(6*count); //다음 테두리의 최대 범위 계산
+                count++; //다음 테두리로 이동
             }
             System.out.println(count);
+        }
+    }
+}*/
+
+//p.2775
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); //테스트 테이스 횟수
+
+        for(int t=0;t<T;t++) {
+            int k = Integer.parseInt(br.readLine()); //층수
+            int n = Integer.parseInt(br.readLine()); //호수
+
+            int[][] apt = new int[k+1][n+1]; //아파트 2차원 배열
+
+            //0층 사람 채우기
+            for(int i=1;i<=n;i++){
+                apt[0][i]=i;
+            }
+            
+            //1층부터 아파트 사람 수 계산
+            for(int i=1;i<=k;i++){
+                for(int j=1;j<=n;j++){
+                    apt[i][j] = apt[i-1][j] + apt[i][j-1]; //점화식 사용
+                }
+            }
+            System.out.println(apt[k][n]);
         }
     }
 }
