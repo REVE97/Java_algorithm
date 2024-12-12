@@ -48,7 +48,7 @@ public class Main{
     }
 }*/
 
-//p.1110
+/*p.11653
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,9 +66,46 @@ public class Main{
                 N/=i;
             }
         }
-
         if(N>1){
             System.out.println(N);
+        }
+    }
+}*/
+
+//p.2309번
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int arr[] = new int[9];
+        int sum=0;
+        
+        //아홉 난쟁이 키 입력
+        for(int i=0;i<arr.length;i++){
+            arr[i] = Integer.parseInt(br.readLine());
+            sum+=arr[i];
+        }
+
+        //난쟁이 두명 제외 조건문
+        for(int i=0;i<8;i++){
+            for(int j=i+1;j<9;j++){
+                if(sum-arr[i]-arr[j]==100){
+                    arr[i]=-1;
+                    arr[j]=-1;
+
+                    Arrays.sort(arr); //오름차순 배열
+                    for(int k=2;k<arr.length;k++){
+                        System.out.println(arr[k]);
+                    }
+                    return; //종료
+                }
+            }
         }
     }
 }
