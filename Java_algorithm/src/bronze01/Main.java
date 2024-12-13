@@ -72,7 +72,7 @@ public class Main{
     }
 }*/
 
-//p.2309번
+/*p.2309번
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -107,5 +107,42 @@ public class Main{
                 }
             }
         }
+    }
+}*/
+
+//p.1110
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String num = br.readLine();
+        
+        int cycle = 0; // 사이클 횟수
+
+        if(Integer.parseInt(num)<=9){
+            num = "0"+num; //한자리 수 일때 앞에 0추가
+        }
+
+        int origin_num = Integer.parseInt(num);
+        int current_num= origin_num;
+
+        while(true){
+            int tens = current_num/10;
+            int ones = current_num%10;
+            int sum = tens+ones;
+
+            current_num=(ones*10) + (sum%10);
+            cycle++;
+
+            if(current_num==origin_num){
+                break;
+            }
+        }
+        System.out.println(cycle);
     }
 }
