@@ -110,7 +110,7 @@ public class Main{
     }
 }*/
 
-//p.1110
+/*p.1110
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -129,14 +129,14 @@ public class Main{
         }
 
         int origin_num = Integer.parseInt(num);
-        int current_num= origin_num;
+        int current_num = origin_num;
 
         while(true){
             int tens = current_num/10;
             int ones = current_num%10;
             int sum = tens+ones;
 
-            current_num=(ones*10) + (sum%10);
+            current_num = (ones*10) + (sum%10);
             cycle++;
 
             if(current_num==origin_num){
@@ -144,5 +144,78 @@ public class Main{
             }
         }
         System.out.println(cycle);
+    }
+}*/
+
+/*p.1157
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String S = br.readLine().toUpperCase(); //단어 입력후 대문자로 리턴
+
+        int alpha_count[] = new int[26];
+
+        for(int i=0;i<S.length();i++){
+            char c = S.charAt(i);
+            alpha_count[c-'A']++;
+        }
+
+        int max=0;
+        char result=0;
+
+        for(int i=0;i<alpha_count.length;i++){
+            if(alpha_count[i]>max){
+                max=alpha_count[i];
+                result=(char)(i+'A');
+            } else if (alpha_count[i]==max){
+                result='?';
+            }
+        }
+
+        System.out.println(result);
+    }
+}*/
+
+//p,1934
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); //테스트 횟수
+        int result[] = new int[T];
+
+        //비교할 A,B 입력
+        //최대공약수를 구하고 계산?
+        for (int i = 0; i < T; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            
+            //최대공약수 찾기
+            int max = 2;
+            for(int j=2;j<Math.min(A,B);j++){
+                if((A%j==0)&&(B%j==0)){
+                    max=j;
+                }
+            }
+            //최소공배수 계산
+            result[i] = max*(A/max)*(B/max);
+        }
+
+        for(int i=0;i<T;i++){
+            System.out.println(result[i]);
+        }
     }
 }
