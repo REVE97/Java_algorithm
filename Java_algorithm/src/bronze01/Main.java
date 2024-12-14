@@ -182,7 +182,7 @@ public class Main{
     }
 }*/
 
-//p,1934
+/*p,1934
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -204,8 +204,8 @@ public class Main{
             int B = Integer.parseInt(st.nextToken());
             
             //최대공약수 찾기
-            int max = 2;
-            for(int j=2;j<Math.min(A,B);j++){
+            int max = 1;
+            for(int j=1;j<=Math.min(A,B);j++){
                 if((A%j==0)&&(B%j==0)){
                     max=j;
                 }
@@ -218,4 +218,5 @@ public class Main{
             System.out.println(result[i]);
         }
     }
-}
+}*/
+
