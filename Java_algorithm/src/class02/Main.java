@@ -18,6 +18,11 @@
 //2024.12.12
 //1. 시간초과 일때는 수학적 계산으로 풀이 생각해보기
 
+//2024.12.16
+//1. Comparable, Comparator : 인터페이스로 인터페이스 내에 선언된 메소드를 반드시 구현해야 함
+//Comparable: compareTo()메소드를 오버라이딩 해야함, compareTo(T o)는 매개변수가 하나로 자기자신과 매개변수를 비교
+//Comparator: compare()메소드를 오버라이딩 해야함, compare(T o1,T o2)는 매개변수가 두개로 두 매개변수를 비교
+
 */
 
 package class02; //패키지 선언
