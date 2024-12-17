@@ -468,7 +468,7 @@ public class Main{
     }
 }*/
 
-//p.2775
+/*p.2775
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -499,5 +499,69 @@ public class Main{
             }
             System.out.println(apt[k][n]);
         }
+    }
+}*/
+
+/*p.11650
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); //테스트 횟수
+        int arr[][] = new int[T][2];
+
+        //좌표값 입력
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            arr[i][0]= Integer.parseInt(st.nextToken());
+            arr[i][1]= Integer.parseInt(st.nextToken());
+        }
+        
+        //익명클래스로 Comparator 사용
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[0]==o2[0]){
+                    return o1[1]-o2[1]; //Integer.compare(o1[1],o2[1]);
+                }
+                return o1[0]-o2[0]; //Integer.compare(o1[0],o2[0]);
+            }
+        });
+        
+        //출력
+        for(int i=0;i<T;i++){
+            System.out.println(arr[i][0]+" "+arr[i][1]);
+        }
+    }
+}*/
+
+//p.10814
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int T = Integer.parseInt(br.readLine()); //테스트 횟수
+        int arr[][] = new int[T][2];
+
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = st.nextToken();
+        }
+
     }
 }
