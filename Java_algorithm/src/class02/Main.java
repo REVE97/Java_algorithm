@@ -22,6 +22,9 @@
 //1. Comparable, Comparator : 인터페이스로 인터페이스 내에 선언된 메소드를 반드시 구현해야 함
 //Comparable: compareTo()메소드를 오버라이딩 해야함, compareTo(T o)는 매개변수가 하나로 자기자신과 매개변수를 비교
 //Comparator: compare()메소드를 오버라이딩 해야함, compare(T o1,T o2)는 매개변수가 두개로 두 매개변수를 비교
+//오름차순: 반환값이 음수일때 두 원소의 위치를 변경하는 알고리즘 사용, 내림차순: 메서드 부분만 변경
+//*익명클래스를 사용하여 코드 간소화
+//cf) https://charliezip.tistory.com/2
 
 */
 
