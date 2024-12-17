@@ -543,11 +543,54 @@ public class Main{
     }
 }*/
 
-//p.10814
+/*p.11651
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); //테스트 횟수
+        int arr[][] = new int[T][2];
+
+        //좌표값 입력
+        for(int i=0;i<T;i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = Integer.parseInt(st.nextToken());
+        }
+
+        //배열 정렬
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[1]==o2[1]){
+                    return o1[0]-o2[0];
+                }
+                return o1[1]-o2[1];
+            }
+        });
+
+        //출력
+        for(int i=0;i<T;i++){
+            System.out.println(arr[i][0]+" "+arr[i][1]);
+        }
+    }
+}*/
+
+/*p.10814
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class Main{
@@ -555,13 +598,27 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         int T = Integer.parseInt(br.readLine()); //테스트 횟수
-        int arr[][] = new int[T][2];
-
+        String arr[][] = new String[T][2];
+        
+        //정보 입력
         for(int i=0;i<T;i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][0] = st.nextToken();
             arr[i][1] = st.nextToken();
         }
 
+        //정렬
+        Arrays.sort(arr, new Comparator<String[]>() {
+            @Override
+            public int compare(String[] o1, String[] o2) {
+                return Integer.parseInt(o1[0])-Integer.parseInt(o2[0]);
+            }
+        });
+        
+        //출력
+        for(int i=0;i<T;i++){
+            System.out.println(arr[i][0]+" "+arr[i][1]);
+        }
     }
-}
+}*/
+
