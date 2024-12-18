@@ -1,5 +1,7 @@
 //solved.ac_class02
-/*FeedBack
+
+/*
+FeedBack
 
 //2024.12.05
 //1. Array 메소드 공부 필요
@@ -23,8 +25,19 @@
 //Comparable: compareTo()메소드를 오버라이딩 해야함, compareTo(T o)는 매개변수가 하나로 자기자신과 매개변수를 비교
 //Comparator: compare()메소드를 오버라이딩 해야함, compare(T o1,T o2)는 매개변수가 두개로 두 매개변수를 비교
 //오름차순: 반환값이 음수일때 두 원소의 위치를 변경하는 알고리즘 사용, 내림차순: 메서드 부분만 변경
-//*익명클래스를 사용하여 코드 간소화
+//익명클래스를 사용하여 코드 간소화
 //cf) https://charliezip.tistory.com/2
+
+//2024.12.18
+//1. Q. 1) 문자열 비교시에 compareTo()가 작동하는 구조, 2) Comparator 인터페이스 사용할때 compareTo()메소드를 사용해도 괜찮은가
+//1) 문자열 비교시에 compareTo()메소드를 사용하면 유니코드 기준으로 정렬됨
+//2) Comparator 인터페이스에서 compareTo()메소드 사용하는 것 자체는 가능함, 정렬 목적과 기준에 맞게 사용
+//2. LinkedHashSet<> -> HashSet 에 순서 개념을 추가한 것, 요소들이 추가된 순서나 나중에 수정된 순서를 유지함
+//+ HashSet : 가장 흔히 사용되는 Set 구현체, 중복 요소를 허용하지 않음 / TreeSet: 요소들을 오름차순으로 정렬하여 저장하는 Set 구현체
+
+//<Set 주요 메소드>
+//+ .add(): 지정된 요소를 세드에 추가, 세트에 이미 같은 요소가 있을 경우 그 요소는 추가하지 않음 / .remove(): 지정된 요소를 제거
+//+ .contains(): 세트가 지정된 요소를 포함하고 있는지 여부를 반환 / .size(): 세트에 있는 요소의 수를 반환 / .isEmpty(): 비어있는지 확인
 
 */
 
@@ -622,3 +635,59 @@ public class Main{
     }
 }*/
 
+/*p.1181
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int T = Integer.parseInt(br.readLine()); //테스트 횟수
+        String[] arr = new String[T];
+        
+        //단어 입력
+        for(int i=0;i<T;i++){
+            arr[i] = br.readLine();
+        }
+
+        // 중복 제거를 위해 LinkedHashSet 사용
+        LinkedHashSet<String> set = new LinkedHashSet<>(Arrays.asList(arr));
+        arr = set.toArray(new String[0]); // 중복 제거 후 배열로 변환
+
+        //배열 정렬
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if(o1.length()==o2.length()){
+                    return o1.compareTo(o2); //길이 같을때 사전순으로 정렬
+                }
+                return o1.length()-o2.length(); //길이 짧은 순서대로 정렬
+            }
+        });
+        
+        //출력
+        for(String s : arr){
+            System.out.println(s);
+        }
+    }
+}*/
+
+//p.2839
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        
+    }
+}
