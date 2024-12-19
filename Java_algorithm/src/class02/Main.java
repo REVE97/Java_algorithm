@@ -39,6 +39,7 @@ FeedBack
 //+ .add(): 지정된 요소를 세드에 추가, 세트에 이미 같은 요소가 있을 경우 그 요소는 추가하지 않음 / .remove(): 지정된 요소를 제거
 //+ .contains(): 세트가 지정된 요소를 포함하고 있는지 여부를 반환 / .size(): 세트에 있는 요소의 수를 반환 / .isEmpty(): 비어있는지 확인
 
+//3. String.toCharArray(): String 문자열을 char 형 배열로 바꿔서 반환해주는 메소드
 */
 
 package class02; //패키지 선언
@@ -678,7 +679,7 @@ public class Main{
     }
 }*/
 
-//p.2839
+/*p.2839
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -688,6 +689,87 @@ public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        int N = Integer.parseInt(br.readLine()); //배달하는 킬로그램
+        int count = 0; //봉지 갯수
+
+        //알고리즘: 3킬로그램 봉지, 5킬로그램 봉지가 있는데 최대한 5킬로그램 봉지로 배달해야 최소값 출력가능
+        //정확하게 N 킬로그램 만들 수 없으면 -1  출력
+
+        while(N>=0){
+            if(N%5==0){
+                count+=N/5;
+                System.out.println(count);
+                return;
+            }
+            N-=3;
+            count++;
+        }
+        System.out.println(-1); //정확히 나눌 수 없을때 -1 출력
+    }
+}*/
+
+//p.1920
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
+        //입력
+        int N = Integer.parseInt(br.readLine());
+        int A[] = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=0;i<N;i++){
+            A[i] = Integer.parseInt(st.nextToken());
+        }
+
+        //이진탐색을 위한 A 정렬
+        Arrays.sort(A);
+
+        int M = Integer.parseInt(br.readLine());
+        int B[] = new int[M];
+
+        StringTokenizer sk = new StringTokenizer(br.readLine());
+        for(int i=0;i<M;i++){
+            B[i] = Integer.parseInt(sk.nextToken());
+        }
+        
+        //존재하는지 판단하는 조건
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < M; i++) {
+            if (binarySearch(A, B[i])) {
+                sb.append(1).append("\n");
+            } else {
+                sb.append(0).append("\n");
+            }
+        }
+        // 결과 출력
+        System.out.print(sb);
+    }
+    
+    //이진 탐색 함수
+    public static boolean binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (array[mid] == target) {
+                return true;
+            } else if (array[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return false;
     }
 }
+
