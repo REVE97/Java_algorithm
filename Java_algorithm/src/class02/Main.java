@@ -40,6 +40,10 @@ FeedBack
 //+ .contains(): 세트가 지정된 요소를 포함하고 있는지 여부를 반환 / .size(): 세트에 있는 요소의 수를 반환 / .isEmpty(): 비어있는지 확인
 
 //3. String.toCharArray(): String 문자열을 char 형 배열로 바꿔서 반환해주는 메소드
+
+//2024.12.19
+//1. 탐색 정렬 알고리즘 공부 필요
+
 */
 
 package class02; //패키지 선언
