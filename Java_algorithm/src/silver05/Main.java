@@ -1,6 +1,6 @@
 package silver05;
 
-//p.1316
+/*p.1316
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,5 +41,30 @@ public class Main {
         }
 
         return true; // 반복문이 끝날 때까지 문제가 없다면 그룹 단어
+    }
+}*/
+
+//p.1676
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int num = Integer.parseInt(br.readLine()); //팩토리얼 숫자 입력
+
+        int count = 0; // 0의 개수
+        
+        //5의 배수로 갯수 구하기
+        while(num>=5){
+           count+=(num/5); //5의 배수 갯수
+           num/=5; //더 높은 5의 거듭제곱 확인하기
+        }
+        
+        //출력
+        System.out.println(count);
     }
 }
