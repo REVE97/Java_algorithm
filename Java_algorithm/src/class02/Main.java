@@ -718,7 +718,7 @@ public class Main{
 
 //p.1920
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -779,5 +779,40 @@ public class Main{
         }
         return false;
     }
-}
+}*/
 
+// p.1929
+// 소수 구하기
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer sk = new StringTokenizer(br.readLine());
+
+        int M = Integer.parseInt(sk.nextToken());
+        int N = Integer.parseInt(sk.nextToken());
+
+        for (int i = M; i <= N; i++) {
+            if(isPrime(i)) {
+                System.out.println(i);
+            }
+        }
+
+    }
+
+    // 소수 판별 메소드
+    public static boolean isPrime(int n) {
+        if(n < 2) return false;
+        for (int i = 2; i <=Math.sqrt(n); i++) {
+            if(n % i == 0) {
+                return false; // 소수가 아님
+            }
+        }
+        return true; // 소수
+    }
+}
