@@ -894,7 +894,7 @@ public class Main {
 // p.10845
 // 큐
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -971,8 +971,71 @@ public class Main {
         if(size == 0) return -1;
         else return queue[size - 1];
     }
-}
+}*/
 
+// p.1966
+// 프린터 큐
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); // 테스트 케이스 수
+
+        for (int i = 0; i < T; i++) {
+            StringTokenizer st1 = new StringTokenizer(br.readLine());
+
+            int N = Integer.parseInt(st1.nextToken()); // 문서 개수
+            int M = Integer.parseInt(st1.nextToken()); // 목표 문서 위치
+
+            int[] priorities = new int[N]; // 중요도 배열
+            boolean[] printed = new boolean[N]; // 인쇄 여부
+
+            StringTokenizer st2 = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                priorities[j] = Integer.parseInt(st2.nextToken());
+            }
+
+            int printCount = 0;
+            int currentIndex = 0;
+
+            while (true) {
+                if (!printed[currentIndex]) {
+                    boolean hasHigher = false;
+                    for (int j = 0; j < N; j++) {
+                        if (!printed[j] && priorities[j] > priorities[currentIndex]) {
+                            hasHigher = true;
+                            break;
+                        }
+                    }
+
+                    if (hasHigher) {
+                        // 중요도가 높은 문서가 있으므로 현재 문서를 뒤로 미룸 (사실상 넘김)
+                        currentIndex = (currentIndex + 1) % N;
+                    } else {
+                        // 현재 문서 인쇄
+                        printed[currentIndex] = true;
+                        printCount++;
+
+                        if (currentIndex == M) {
+                            System.out.println(printCount);
+                            break;
+                        }
+
+                        currentIndex = (currentIndex + 1) % N;
+                    }
+                } else {
+                    currentIndex = (currentIndex + 1) % N;
+                }
+            }
+        }
+    }
+}
 
 
 
