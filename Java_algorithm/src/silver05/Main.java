@@ -72,6 +72,7 @@ public class Main{
 
 // p.1427
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -91,4 +92,44 @@ public class Main {
             System.out.print(chars[i]);
         }
     }
+}*/
+
+// p.1193
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int X = Integer.parseInt(br.readLine());
+
+        int count = 0;
+        int line = 0;
+
+        // 몇 번째 대각선인지 찾기
+        while (count < X) {
+            line++;
+            count += line; // 1 + 2 + 3 + ...
+        }
+
+        int diff = count - X; // 대각선에서 몇 번째인지 계산
+
+        int numerator; //분자
+        int denominator; //분모
+
+        if (line % 2 == 0) {
+            // 짝수번째 줄: 분자는 작아지고 분모는 커짐
+            numerator = line - diff;
+            denominator = 1 + diff;
+        } else {
+            // 홀수번째 줄: 분자는 커지고 분모는 작아짐
+            numerator = 1 + diff;
+            denominator = line - diff;
+        }
+        System.out.println(numerator + "/" + denominator);
+    }
 }
+
