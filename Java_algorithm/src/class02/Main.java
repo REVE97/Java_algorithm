@@ -976,7 +976,7 @@ public class Main {
 // p.1966
 // 프린터 큐
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -996,17 +996,20 @@ public class Main {
             int[] priorities = new int[N]; // 중요도 배열
             boolean[] printed = new boolean[N]; // 인쇄 여부
 
+            // 중요도를 중요도 배열에 입력
             StringTokenizer st2 = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 priorities[j] = Integer.parseInt(st2.nextToken());
             }
 
-            int printCount = 0;
-            int currentIndex = 0;
+            int printCount = 0; // 인쇄된 문서 수
+            int currentIndex = 0; // 현재 프린터가 주목하는 문서 위치
 
+            // 현재 문서가 아직 인쇄되지 않았을 때까지 처리
             while (true) {
                 if (!printed[currentIndex]) {
                     boolean hasHigher = false;
+                    // 아직 인쇄되지 않은 문서 중 현재 문서보다 중요도가 높은 문서가 있는지 검사함
                     for (int j = 0; j < N; j++) {
                         if (!printed[j] && priorities[j] > priorities[currentIndex]) {
                             hasHigher = true;
@@ -1035,8 +1038,7 @@ public class Main {
             }
         }
     }
-}
-
+}*/
 
 
 
