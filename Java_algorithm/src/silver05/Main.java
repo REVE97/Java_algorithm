@@ -96,6 +96,7 @@ public class Main {
 
 // p.1193
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -131,5 +132,75 @@ public class Main {
         }
         System.out.println(numerator + "/" + denominator);
     }
-}
+}*/
 
+// p.4673
+
+/*public class Main {
+    static boolean[] arr = new boolean[10001];
+
+    public static void main(String[] args) {
+        for(int i=1; i<=10000; i++){
+            int is = notSelfNum(i);
+            if(is<=10000){
+            arr[is] = true;
+            }
+        }
+        for(int i=1; i<=10000; i++){
+            if(!arr[i]){
+                System.out.println(i);
+            }
+        }
+    }
+
+    // 생성자 유무 확인 함수
+    public static int notSelfNum(int num) {
+        int result = num;
+        while(num > 0){
+            result += num % 10;
+            num /= 10;
+        }
+        return result;
+    }
+}*/
+
+// p.2941
+// String - > 문자 배열 ?
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+
+        String[] cro = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+
+        for(String s : cro) {
+            if(str.contains(s)) {
+                str = str.replace(s, " ");
+            }
+        }
+        System.out.println(str.length());
+    }
+}*/
+
+// p.1436
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        StringBuilder sb = new StringBuilder();
+
+
+    }
+}
