@@ -976,7 +976,8 @@ public class Main {
 // p.1966
 // 프린터 큐
 
-/*import java.io.BufferedReader;
+/*
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -1018,7 +1019,7 @@ public class Main {
                     }
 
                     if (hasHigher) {
-                        // 중요도가 높은 문서가 있으므로 현재 문서를 뒤로 미룸 (사실상 넘김)
+                        // 중요도가 높은 문서가 있으므로 현재 문서를 뒤로 미룸
                         currentIndex = (currentIndex + 1) % N;
                     } else {
                         // 현재 문서 인쇄
@@ -1040,7 +1041,122 @@ public class Main {
     }
 }*/
 
+// p.1436
 
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
+        int count = 0;              // 찾은 "숌의 숫자" 개수를 세는 변수
+        int number = 666;           // 666부터 시작
 
+        // 계속 숫자를 증가시키면서 검사
+        while (true) {
+            // 현재 숫자에 '666'이 포함되어 있다면
+            if (String.valueOf(number).contains("666")) {
+                count++;  // "숌의 숫자" 개수를 1 증가
+                if (count == n) {   // N번째 숫자라면 출력하고 종료
+                    System.out.println(number);
+                    break;
+                }
+            }
+            number++; // 다음 숫자로 이동
+        }
+    }
+}*/
+
+// p.9012
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); // 테스트 케이스 수
+
+        for (int i = 0; i < T; i++) {
+            String str = br.readLine();
+            boolean flag = VPS(str);
+            System.out.println(flag ? "YES" : "NO");
+        }
+    }
+
+    public static boolean VPS(String s) {
+        int count = 0;
+        char[] c = s.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == '(') {
+                count++;
+            } else if (c[i] == ')') {
+                count--;
+            }
+
+            if (count < 0 ) return false;
+        }
+        return count == 0;
+    }
+}*/
+
+// p.7568
+// (x,y) (p,q) = x>p and y>q => 덩치가 크다
+// 덩치 등수 = 자신보다 큰 덩치의 사람의 수 n+1
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine()); // 전체 사람수
+        int[][] arr = new int[N][2]; // 몸무게, 키 2차원 배열
+        
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            arr[i][0] = a; // 몸무게
+            arr[i][1] = b; // 키
+        }
+
+        for (int i = 0; i < N; i++) {
+            int rank = 1; // 덩치 등수
+            for (int j = 0; j < N; j++) {
+                if (i==j) continue;
+                if ((arr[j][0] > arr[i][0]) && (arr[j][1] > arr[i][1])) {
+                    rank++;
+                }
+            }
+            System.out.print(rank+" ");
+        }
+    }
+}*/
+
+// p.1018
+// 2차원 배열 사용
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        
+    }
+}
