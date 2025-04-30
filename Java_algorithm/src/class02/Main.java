@@ -1143,20 +1143,127 @@ public class Main {
 }*/
 
 // p.1018
-// 2차원 배열 사용
+// 2차원 배열 사용 ?
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+    static char[][] board;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        
+        int N = Integer.parseInt(st.nextToken()); // 행
+        int M = Integer.parseInt(st.nextToken()); // 열
+
+        board = new char[N][M];
+
+        // 보드 입력 받기
+        for (int i = 0; i < N; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < M; j++) {
+                board[i][j] = line.charAt(j);
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+
+        // 모든 8x8 구간 탐색
+        for (int i = 0; i <= N - 8; i++) {
+            for (int j = 0; j <= M - 8; j++) {
+                int result = countToRepaint(i, j);
+                if (result < min) {
+                    min = result;
+                }
+            }
+        }
+
+        System.out.println(min);
+    }
+
+    // 8x8 체스판을 다시 칠해야 하는 최소 칸 수 계산
+    public static int countToRepaint(int x, int y) {
+        int count1 = 0; // 'W'로 시작
+        int count2 = 0; // 'B'로 시작
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                // 실제 좌표
+                char current = board[x + i][y + j];
+
+                // 기대되는 색상
+                if ((i + j) % 2 == 0) {
+                    if (current != 'W') count1++;
+                    if (current != 'B') count2++;
+                } else {
+                    if (current != 'B') count1++;
+                    if (current != 'W') count2++;
+                }
+            }
+        }
+
+        return Math.min(count1, count2);
+    }
+}*/
+
+// p.2164
+// 큐 사용
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+
+        Queue<Integer> q = new ArrayDeque<>();
+
+        for (int i = 1; i <= N; i++) {
+            q.add(i);
+        }
+
+        while(q.size() > 1) {
+            q.poll();
+            q.add(q.poll());
+        }
+
+        System.out.println(q.poll());
+    }
+}*/
+
+// p.4949
+// 스택
+// 진행중
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String str = br.readLine();
+        boolean flag = VPS(str);
+
+    }
+
+    public static boolean VPS(String str) {
+        char[] c = str.toCharArray();
+        int count = 0;
+
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == ' ') {}
+        }
+
+        return count == 0;
     }
 }
