@@ -1285,46 +1285,114 @@ public class Main {
 // p.10816
 // 진행중
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        // 숫자 카드 개수 입력
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
+        HashMap<Integer, Integer> map = new HashMap<>();
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            int num = Integer.parseInt(st.nextToken());
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
+        // 찾을 숫자 개수 입력
         int M = Integer.parseInt(br.readLine());
-
-        int[] arr2 = new int[M];
         StringTokenizer st2 = new StringTokenizer(br.readLine());
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < M; i++) {
-            arr2[i] = Integer.parseInt(st2.nextToken());
+            int target = Integer.parseInt(st2.nextToken());
+            sb.append(map.getOrDefault(target, 0)).append(" ");
         }
 
-        int[] result = new int[M];
+        // 결과 출력
+        System.out.println(sb.toString().trim());
+    }
+}*/
 
-        for(int i = 0; i < M; i++){
-            for(int j = 0; j < N; j++){
-                if(arr[j] == arr2[i]){
-                    result[i]++;
-                }
+// p.11866
+// 큐
+
+// 1 2 3 4 5 6 7
+// 4 5 6 7 1 2
+// 7 1 2 4 5
+// 4 5 7 1
+// 1 4 5
+// 1 4
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        Queue<Integer> q = new ArrayDeque<>();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("<");
+
+        for (int i = 1; i <= N; i++) {
+            q.add(i);
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j < K; j++) {
+                q.add(q.poll());
+            }
+            sb.append(q.poll());
+            if(!q.isEmpty()) {
+                sb.append(", ");
             }
         }
+        sb.append(">");
+        System.out.println(sb);
+    }
+}*/
 
-        for(int i = 0; i < M; i++){
-            System.out.print(result[i] + " ");
+// p.1874
+// 스택 수열
+// 진행중
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            int a = Integer.parseInt(br.readLine());
+            stack.push(a);
         }
+
 
     }
 }
+
+
+
