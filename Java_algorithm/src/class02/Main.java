@@ -1242,28 +1242,89 @@ public class Main {
 
 // p.4949
 // 스택
-// 진행중
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String str = br.readLine();
-        boolean flag = VPS(str);
+        while (true) {
+            String str = br.readLine();
 
+            if (str.equals(".")) break;
+
+            boolean flag = isBalanced(str);
+
+            System.out.println(flag ? "yes" : "no");
+        }
     }
 
-    public static boolean VPS(String str) {
-        char[] c = str.toCharArray();
-        int count = 0;
+    public static boolean isBalanced(String str) {
+        Stack<Character> stack = new Stack<>();
 
-        for (int i = 0; i < c.length; i++) {
-            if (c[i] == ' ') {}
+        for (char c : str.toCharArray()) {
+            if (c == '(' || c == '[') {
+                stack.push(c);
+            } else if (c == ')') {
+                if (stack.isEmpty() || stack.peek() != '(') return false;
+                stack.pop();
+            } else if (c == ']') {
+                if (stack.isEmpty() || stack.peek() != '[') return false;
+                stack.pop();
+            }
         }
 
-        return count == 0;
+        return stack.isEmpty();
+    }
+}*/
+
+// p.10816
+// 진행중
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int[] arr = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int M = Integer.parseInt(br.readLine());
+
+        int[] arr2 = new int[M];
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < M; i++) {
+            arr2[i] = Integer.parseInt(st2.nextToken());
+        }
+
+        int[] result = new int[M];
+
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(arr[j] == arr2[i]){
+                    result[i]++;
+                }
+            }
+        }
+
+        for(int i = 0; i < M; i++){
+            System.out.print(result[i] + " ");
+        }
+
     }
 }
