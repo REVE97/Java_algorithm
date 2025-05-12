@@ -1372,6 +1372,8 @@ public class Main {
 // 스택 수열
 // 진행중
 
+// 4 3 6 8 7 5 2 1
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -1380,19 +1382,48 @@ import java.util.Stack;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(br.readLine());
-
-        Stack<Integer> stack = new Stack<>();
+        int[] sequence = new int[n];
 
         for (int i = 0; i < n; i++) {
-            int a = Integer.parseInt(br.readLine());
-            stack.push(a);
+            sequence[i] = Integer.parseInt(br.readLine());
         }
 
+        Stack<Integer> stack = new Stack<>();
+        int current = 1;
+        boolean isPossible = true;
 
+        for (int i = 0; i < n; i++) {
+            int target = sequence[i];
+
+            // target보다 작거나 같을 때까지 push
+            while (current <= target) {
+                stack.push(current);
+                sb.append("+\n");
+                current++;
+            }
+
+            // 스택 top이 target이면 pop
+            if (stack.peek() == target) {
+                stack.pop();
+                sb.append("-\n");
+            } else {
+                // 만들 수 없는 수열
+                isPossible = false;
+                break;
+            }
+        }
+
+        if (isPossible) {
+            System.out.print(sb);
+        } else {
+            System.out.println("NO");
+        }
     }
 }
+
 
 
 
