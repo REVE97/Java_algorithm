@@ -1374,7 +1374,7 @@ public class Main {
 
 // 4 3 6 8 7 5 2 1
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
@@ -1422,8 +1422,273 @@ public class Main {
             System.out.println("NO");
         }
     }
+}*/
+
+// p.15829
+// 해싱 함수
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        final int r = 31;
+        final int M = 1234567891;
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int L = Integer.parseInt(br.readLine()); // 문자열 길이
+        String str = br.readLine(); // 문자열 입력
+
+        long hash = 0;
+        long power = 1;
+
+        for (int i = 0; i < L; i++) {
+            int charValue = str.charAt(i) - 'a' + 1; // 'a' = 1, 'b' = 2, ..., 'z' = 26
+            hash = (hash + (charValue * power) % M) % M;
+            power = (power * r) % M; // r^i mod M 갱신
+        }
+
+        System.out.println(hash);
+    }
+}*/
+
+// p.28702
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    // FizzBuzz 규칙에 따라 문자열을 반환하는 메서드
+    private static String fizzBuzz(int n) {
+        if (n % 15 == 0) return "FizzBuzz";
+        else if (n % 3 == 0) return "Fizz";
+        else if (n % 5 == 0) return "Buzz";
+        else return String.valueOf(n);
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] inputs = new String[3];
+        int[] numbers = new int[3];
+        boolean[] isNumber = new boolean[3];
+
+        // 입력값 처리
+        for (int i = 0; i < 3; i++) {
+            inputs[i] = br.readLine();
+            try {
+                numbers[i] = Integer.parseInt(inputs[i]);
+                isNumber[i] = true;
+            } catch (NumberFormatException e) {
+                isNumber[i] = false;
+            }
+        }
+
+        int nextNumber = 0;
+
+        // 세 번째 입력값이 숫자인 경우
+        if (isNumber[2]) {
+            nextNumber = numbers[2] + 1;
+        } else if (isNumber[1]) {
+            nextNumber = numbers[1] + 2;
+        } else if (isNumber[0]) {
+            nextNumber = numbers[0] + 3;
+        } else {
+            // 모든 입력값이 문자열인 경우 처리 (예외 상황)
+            System.out.println("Cannot determine the next number.");
+            return;
+        }
+
+        // FizzBuzz 결과 출력
+        System.out.println(fizzBuzz(nextNumber));
+    }
+}*/
+
+// p.10773
+// 스택
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int K = Integer.parseInt(br.readLine());
+        Stack<Integer> stack = new Stack<Integer>();
+
+        for (int i = 0; i < K; i++) {
+            int num = Integer.parseInt(br.readLine());
+            if(num == 0) {
+                stack.pop();
+            } else {
+                stack.push(num);
+            }
+        }
+
+        int sum = 0;
+
+        while (!stack.isEmpty()) {
+            sum += stack.pop();
+        }
+
+        System.out.println(sum);
+    }
+}*/
+
+// p.18110
+// 정렬
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // 의견이 없으면 난이도 0
+        // 난이도는 모든 사람의 난이도 의견의 절사평균 30%으로 결정
+        // 절사평균으로 제외되는 사람 수는 위 아래에서 각각 반올림
+        // 마지막 난이도도 반올림하여 출력 Math.round() 사용
+        // 배열 선언후 length 앞뒤로 자르고 반올림
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine()); // 난이도 의견 갯수
+
+        int[] arr = new int[n]; // 난이도 배열
+        double result = 0; // 난이도 최종값
+
+        for(int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        Arrays.sort(arr);
+
+        // 앞뒤로 자를 배열 수
+        int count = (int)Math.round(n*0.15);
+
+        for(int i = 0+count; i < n-count; i++) {
+            result += arr[i];
+        }
+
+        result /= n-count*2;
+        System.out.println(Math.round(result));
+    }
+}*/
+
+// p.1654
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int K = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+
+        int[] arr = new int[K];
+        long max = 0;
+
+        for (int i = 0; i < K; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            if (arr[i] > max) max = arr[i]; // 최대값 저장
+        }
+
+        long left = 1;
+        long right = max;
+        long result = 0;
+
+        while (left <= right) {
+            long mid = (left + right) / 2;
+
+            long count = 0;
+            for (int i = 0; i < K; i++) {
+                count += arr[i] / mid;
+            }
+
+            if (count >= N) {
+                result = mid; // 더 긴 길이 시도
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        System.out.println(result);
+    }
+}*/
+
+// p.2108
+// 집합, 맵
+
+// N은 무조건 홀수값
+// 산술 평균 : 평균값 구하기
+// 중앙값 : 배열 정렬 후 길이 / 2 -> Math.round() 사용
+// 최빈값 : 따로 배열 만들어서 max 값 구하기
+// 범위 : 배열 정렬 후에 index (n-1) - 0 값 구하기
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[N];
+        int[] count = new int[8001];
+
+        int sum = 0;
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            sum += arr[i];
+            count[arr[i] + 4000]++;
+        }
+
+        Arrays.sort(arr);
+
+        // 1. 산술평균
+        System.out.println(Math.round((double)sum / N));
+
+        // 2. 중앙값
+        System.out.println(arr[N / 2]);
+
+        // 3. 최빈값
+        int maxFreq = 0;
+        for (int i = 0; i < 8001; i++) {
+            if (count[i] > maxFreq) {
+                maxFreq = count[i];
+            }
+        }
+
+        List<Integer> modeList = new ArrayList<>();
+        for (int i = 0; i < 8001; i++) {
+            if (count[i] == maxFreq) {
+                modeList.add(i - 4000);
+            }
+        }
+
+        // 최빈값 출력: 두 번째로 작은 값
+        if (modeList.size() > 1) {
+            Collections.sort(modeList);
+            System.out.println(modeList.get(1));
+        } else {
+            System.out.println(modeList.get(0));
+        }
+
+        // 4. 범위
+        System.out.println(arr[N - 1] - arr[0]);
+    }
 }
-
-
-
-
