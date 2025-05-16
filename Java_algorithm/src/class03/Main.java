@@ -353,34 +353,125 @@ public class Main {
 
 // p.9375
 // 해시, 집합과 맵
+// getOrDefault 사용
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int T = Integer.parseInt(br.readLine()); // 테스트케이스의 수
+        StringBuilder sb = new StringBuilder(); // 결과값 출력
 
         for (int i = 0; i < T; i++) {
             int N = Integer.parseInt(br.readLine());
-            Map<String,String> map = new HashMap<>();
+            Map<String,Integer> map = new HashMap<>();
 
             for (int j = 0; j < N; j++) {
-                
+                StringTokenizer st = new StringTokenizer(br.readLine()); // 의상의 이름 , 종류 입력
+                st.nextToken(); // 의상 이름 무시
+                String type = st.nextToken();
+
+                map.put(type,map.getOrDefault(type,0)+1);
+            }
+
+            int result = 1;
+
+            for(int count : map.values()){
+                result *= (count+1);
+            }
+
+            result -= 1;
+
+            sb.append(result).append("\n");
+        }
+        System.out.println(sb);
+    }
+}*/
+
+// p.1260
+// DFS, BFS
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static Map<Integer, List<Integer>> graph = new HashMap<>();
+    public static boolean[] visited; // 방문 여부 확인
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken()); // 정점 수
+        int M = Integer.parseInt(st.nextToken()); // 간선 수
+        int V = Integer.parseInt(st.nextToken()); // 시작 정점
+
+        // 그래프 초기화
+        for (int i = 1; i <= N; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+
+        // 간선 입력
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
+
+        // 인접 리스트 정렬 (정점 번호가 작은 것부터 방문하기 위해)
+        for (int key : graph.keySet()) {
+            Collections.sort(graph.get(key));
+        }
+
+        visited = new boolean[N + 1];
+        dfs(V);
+        System.out.println();
+
+        visited = new boolean[N + 1];
+        bfs(V);
+    }
+
+    // DFS
+    public static void dfs(int v) {
+        visited[v] = true;
+        System.out.print(v + " ");
+
+        for (int next : graph.getOrDefault(v, new ArrayList<>())) {
+            if (!visited[next]) {
+                dfs(next);
+            }
+        }
+    }
+
+    // BFS
+    public static void bfs(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        visited[v] = true;
+        queue.offer(v);
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            System.out.print(current + " ");
+
+            for (int next : graph.getOrDefault(current, new ArrayList<>())) {
+                if (!visited[next]) {
+                    visited[next] = true;
+                    queue.offer(next);
+                }
             }
         }
     }
 }
-
-
-
-
-
 
 
 
