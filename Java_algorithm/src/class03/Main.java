@@ -189,6 +189,7 @@ public class Main {
 // p.11047
 // 그리디 알고리즘
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -218,4 +219,170 @@ public class Main {
         }
         System.out.println(min);
     }
+}*/
+
+// p.11659
+// prefixSum[i] = arr[1] + arr[2] + ... + arr[i]
+// 누적합 배열 생성
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken()); // 배열 수의 갯수
+        int M = Integer.parseInt(st.nextToken()); // 테스트 케이스 횟수
+
+        int[] arr = new int[N + 1]; // 배열 생성 
+        int[] prefixSum = new int[N + 1]; // 누적합 배열 생성
+
+        // 배열 값 초기화
+        st = new StringTokenizer(br.readLine());
+        for (int i = 1; i <= N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            prefixSum[i] = prefixSum[i - 1] + arr[i]; // 누적합 미리 계산
+        }
+
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            sb.append(prefixSum[b] - prefixSum[a - 1]).append("\n");
+        }
+
+        System.out.println(sb);
+    }
+}*/
+
+
+// p.1620
+// 해시, 집합과 맵
+// key 를 입력하면 value 가 나오고 value 를 입력하면 key 값이 출력
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken()); // 포켓몬 숫자
+        int M = Integer.parseInt(st.nextToken()); // 문제 수
+
+        Map<String,Integer> map = new HashMap<String,Integer>(); // 이름으로 인덱스
+        String[] numTo = new String[N+1]; // 인덱스로 이름
+        StringBuilder sb = new StringBuilder(); // 결과 StringBuilder
+
+        // HashMap 값,numTo 배열 값 입력
+        for(int i = 1; i <= N; i++) {
+            String str = br.readLine();
+            map.put(str,i);
+            numTo[i] = str;
+        }
+
+        // 정수 입력과 문자열 입력을 달리 처리해야함 => 따로 메소드 구현
+        for(int i = 1; i <= M; i++) {
+            String str = br.readLine();
+            if(isNumber(str)){
+                int index = Integer.parseInt(str);
+                sb.append(numTo[index]).append("\n");
+            } else {
+                sb.append(map.get(str)).append("\n");
+            }
+        }
+        System.out.println(sb);
+    }
+
+    public static boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+}*/
+
+// p.17219
+// 해시, 집합과 맵
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken()); // 저장된 사이트 주소의 수
+        int M = Integer.parseInt(st.nextToken()); // 찾으려는 사이트 주소의 수
+
+        Map<String,String> map = new HashMap<>(); // 사이트, 비밀번호를 저장할 맵
+        StringBuilder sb = new StringBuilder(); // 출력할 값
+
+        // 맵에 key, value 값 추가
+        for(int i=0;i<N;i++) {
+            st = new StringTokenizer(br.readLine());
+            map.put(st.nextToken(),st.nextToken());
+        }
+
+        // 비밀번호 찾으려는 사이트 입력
+        for(int i=0;i<M;i++) {
+            String str = br.readLine();
+            sb.append(map.get(str)).append("\n");
+        }
+        System.out.println(sb);
+    }
+}*/
+
+// p.9375
+// 해시, 집합과 맵
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); // 테스트케이스의 수
+
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            Map<String,String> map = new HashMap<>();
+
+            for (int j = 0; j < N; j++) {
+                
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
