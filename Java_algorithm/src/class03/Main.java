@@ -398,7 +398,7 @@ public class Main {
 // p.1260
 // DFS, BFS
 
-import java.io.*;
+/*import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -471,9 +471,81 @@ public class Main {
             }
         }
     }
+}*/
+
+// p.1463
+// DP
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 입력값
+
+        // 입력값을 1로 만드는데 필요한 연산횟수 출력
+        long[] dp = new long[N + 1];
+
+        dp[1] = 0; // 1일 경우
+
+        for (int i = 2; i <= N; i++) {
+            dp[i] = dp[i - 1] + 1;
+
+            if (i % 2 == 0) {
+                dp[i] = Math.min(dp[i], dp[i / 2] + 1);
+            }
+            if (i % 3 == 0) {
+                dp[i] = Math.min(dp[i], dp[i / 3] + 1);
+            }
+        }
+        System.out.println(dp[N]);
+    }
+}*/
+
+// p.2579
+// DP
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // 1칸 또는 2칸씩 이동 가능 , 연속으로 3개의 계단은 불가능
+        // 마지막 도착 계단은 무조건 도착
+        // 총 점수의 최댓값 출력
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 계단의 수
+
+        int[] stair = new int[N+1]; // 계단 배열
+
+        for (int i = 1; i <= N; i++) {
+            stair[i] = Integer.parseInt(br.readLine());
+        }
+
+        // i번째 계단까지 올라왔을 때 최대점수
+        int[] dp = new int[N+1];
+
+        // 1일때일 경우
+        if(N==1) {
+            System.out.println(stair[1]);
+            return;
+        }
+
+        // 초기값
+        dp[1] = stair[1];
+        dp[2] = stair[1]+stair[2];
+        
+        // 한칸 건너뛰고 올라온 경우, 두 칸 건너뛰고 두 칸 연속 밟은 경우
+        for (int i = 3; i <= N; i++) {
+            dp[i] = Math.max(dp[i-2], dp[i-3] + stair[i-1]) + stair[i];
+        }
+
+        System.out.println(dp[N]);
+    }
 }
-
-
-
-
-
