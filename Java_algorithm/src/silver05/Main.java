@@ -188,19 +188,59 @@ public class Main {
     }
 }*/
 
-// p.1436
+// p.10815
+// 집합, 맵
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        // 첫번째 값들을 맵으로 생성하고 두번째 값들을 getOrDefault로 StringBuilder에 추가
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        StringBuilder output = new StringBuilder();
 
-        StringBuilder sb = new StringBuilder();
+        Map<Integer, Integer> map = new HashMap<>();
 
+        int N = Integer.parseInt(br.readLine()); // 가지고 있는 카드
 
+        int[] arr1 = new int[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            arr1[i] = Integer.parseInt(st.nextToken());
+        }
+
+        for (int i = 0; i < N; i++) {
+            map.put(arr1[i],1);
+        }
+
+        int M = Integer.parseInt(br.readLine()); // 존재하는 지 확인하는 카드
+
+        int[] arr2 = new int[M];
+
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        for (int i = 0; i < M; i++) {
+            arr2[i] = Integer.parseInt(st2.nextToken());
+        }
+
+        for (int i = 0; i < M; i++) {
+            output.append(map.getOrDefault(arr2[i],0)).append(" ");
+        }
+
+        System.out.println(output);
     }
 }
+
+
+
+
+
+
+
+
