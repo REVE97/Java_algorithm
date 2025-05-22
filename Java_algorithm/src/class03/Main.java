@@ -508,7 +508,7 @@ public class Main {
 // p.2579
 // DP
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -540,7 +540,7 @@ public class Main {
         // 초기값
         dp[1] = stair[1];
         dp[2] = stair[1]+stair[2];
-        
+
         // 한칸 건너뛰고 올라온 경우, 두 칸 건너뛰고 두 칸 연속 밟은 경우
         for (int i = 3; i <= N; i++) {
             dp[i] = Math.max(dp[i-2], dp[i-3] + stair[i-1]) + stair[i];
@@ -548,4 +548,120 @@ public class Main {
 
         System.out.println(dp[N]);
     }
+}*/
+
+// p.1927
+// 우선순위 큐
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // PriorityQueue 사용
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(); // 우선순위 큐 생성
+        StringBuilder sb = new StringBuilder(); // 결과값
+
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            int num = Integer.parseInt(br.readLine());
+
+            if (num == 0) {
+                if (pq.isEmpty()) {
+                    sb.append("0\n");
+                } else {
+                    sb.append(pq.poll()).append("\n");
+                }
+            } else pq.add(num);
+        }
+        System.out.println(sb);
+    }
+}*/
+
+// p.11279
+// 우선순위 큐
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.PriorityQueue;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        StringBuilder sb = new StringBuilder(); // 결과값 출력
+
+        int N = Integer.parseInt(br.readLine()); // 테스트케이스 수
+
+        for (int i = 0; i < N; i++) {
+            int n = Integer.parseInt(br.readLine());
+
+            if(n==0) {
+                if(pq.isEmpty()) {
+                    sb.append(0).append("\n");
+                } else {
+                    sb.append(pq.poll()).append("\n");
+                }
+            } else {
+                pq.add(n);
+            }
+        }
+        System.out.println(sb);
+    }
+}*/
+
+// p.11286
+// 우선순위 큐, comparator
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // 절댓값 기준 + 절댓값 같으면 음수 우선
+        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                int absA = Math.abs(a);
+                int absB = Math.abs(b);
+                if (absA == absB) {
+                    return a - b; // 음수 우선
+                }
+                return absA - absB; // 절댓값 기준 오름차순
+            }
+        });
+
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            int num = Integer.parseInt(br.readLine());
+
+            if (num == 0) {
+                if (pq.isEmpty()) {
+                    sb.append(0).append("\n");
+                } else {
+                    sb.append(pq.poll()).append("\n");
+                }
+            } else {
+                pq.add(num);
+            }
+        }
+        System.out.print(sb);
+    }
 }
+
