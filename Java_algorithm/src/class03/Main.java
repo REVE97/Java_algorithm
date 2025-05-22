@@ -622,7 +622,7 @@ public class Main{
 // p.11286
 // 우선순위 큐, comparator
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.PriorityQueue;
@@ -663,5 +663,39 @@ public class Main {
         }
         System.out.print(sb);
     }
-}
+}*/
 
+// p.9095
+// DP
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); // 테스트 케이스 개수
+
+        int[] dp = new int[11]; // n은 최대 10까지
+        dp[0] = 1;
+        dp[1] = 1; // (1)
+        dp[2] = 2; // (1+1), (2)
+        dp[3] = 4; // (1+1+1), (1+2), (2+1), (3)
+
+        // dp 미리 계산
+        for (int i = 4; i <= 10; i++) {
+            dp[i] = dp[i-1] + dp[i-2] + dp[i-3]; // 점화식
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < T; i++) {
+            int n = Integer.parseInt(br.readLine());
+            sb.append(dp[n]).append("\n");
+        }
+
+        System.out.print(sb);
+    }
+}
