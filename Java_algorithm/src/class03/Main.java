@@ -668,7 +668,7 @@ public class Main {
 // p.9095
 // DP
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
@@ -698,4 +698,68 @@ public class Main {
 
         System.out.print(sb);
     }
+}*/
+
+// p.2606
+// BFS
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int computer = Integer.parseInt(br.readLine()); // 컴퓨터 개수
+        int edge = Integer.parseInt(br.readLine());     // 연결 수
+
+        // 인접 리스트를 이용한 그래프 표현
+        // Q. 인접리스트 새로운 리스트를 생성하게 되면 List안에 List가 0번째 원소로 시작?
+        // Q. List 값 안에 기존에 있는 값을 추가하면 중복이 되는지?
+
+        // map 사용
+        /*Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 1; i <= computer; i++) {
+            map.put(i, new ArrayList<>());
+        }*/
+        
+        // 인접 리스트 사용
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i <= computer; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // 연결 정보 입력
+        for (int i = 0; i < edge; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            graph.get(a).add(b);
+            graph.get(b).add(a); // 양방향 연결
+        }
+
+        // BFS 시작
+        boolean[] visited = new boolean[computer + 1];
+        Queue<Integer> queue = new LinkedList<>();
+        int count = 0;
+
+        queue.add(1); // 1번 컴퓨터부터 시작
+        visited[1] = true;
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            for (int next : graph.get(current)) {
+                if (!visited[next]) {
+                    visited[next] = true;
+                    queue.add(next);
+                    count++; // 감염된 컴퓨터 수 증가
+                }
+            }
+        }
+        System.out.println(count); // 1번 컴퓨터 제외한 감염된 컴퓨터 수 출력
+    }
 }
+
