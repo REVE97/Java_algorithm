@@ -715,11 +715,7 @@ public class Main {
         int computer = Integer.parseInt(br.readLine()); // 컴퓨터 개수
         int edge = Integer.parseInt(br.readLine());     // 연결 수
 
-        // 인접 리스트를 이용한 그래프 표현
-        // Q. 인접리스트 새로운 리스트를 생성하게 되면 List안에 List가 0번째 원소로 시작?
-        // Q. List 값 안에 기존에 있는 값을 추가하면 중복이 되는지?
-
-        // map 사용
+        // map 사용 -> graph 를 map 으로 변경
         /*Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 1; i <= computer; i++) {
             map.put(i, new ArrayList<>());
@@ -737,13 +733,14 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
+            // 양방향 연결
             graph.get(a).add(b);
-            graph.get(b).add(a); // 양방향 연결
+            graph.get(b).add(a);
         }
 
         // BFS 시작
         boolean[] visited = new boolean[computer + 1];
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         int count = 0;
 
         queue.add(1); // 1번 컴퓨터부터 시작
