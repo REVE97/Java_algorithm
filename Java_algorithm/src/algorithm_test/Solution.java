@@ -44,30 +44,30 @@ class Solution {
 // 신고 결과 받기
 // 집합, 맵
 
-/*import java.util.*;
+import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) {
         int[] answer = new int[id_list.length];
 
-        Map<String, Integer> reportCount = new HashMap<>();
-        Map<String, Set<String>> reporters = new HashMap<>();
+        Map<String, Set<String>> reporters = new HashMap<>(); // 각 유저가 신고한 대상
+        Map<String, Integer> reportCount = new HashMap<>(); // 각 유저가 신고당한 횟수
 
-        for (String r : new HashSet<>(Arrays.asList(report))) {
-            String[] parts = r.split(" ");
-            reporters.computeIfAbsent(parts[0], v -> new HashSet<>()).add(parts[1]);
-            reportCount.put(parts[1], reportCount.getOrDefault(parts[1], 0) + 1);
+        for (String s : new HashSet<>(List.of(report))) { // 중복 신고 제거
+            String[] parts = s.split(" ");
+            reporters.computeIfAbsent(parts[0], v -> new HashSet<>()).add(parts[1]); // part[0]:신고자
+            reportCount.put(parts[1], reportCount.getOrDefault(parts[1], 0) + 1); // part[1]:신고 대상
         }
 
         for (int i = 0; i < id_list.length; i++) {
-            Set<String> reportees = reporters.getOrDefault(id_list[i], new HashSet<>());
+            Set<String> reportees = reporters.getOrDefault(id_list[i], new HashSet<>()); // 신고한 유저 목록
             for (String user : reportees)
-                if (reportCount.getOrDefault(user, 0) >= k) answer[i]++;
+                if (reportCount.getOrDefault(user, 0) >= k)
+                    answer[i]++;
         }
-
         return answer;
     }
-}*/
+}
 
 // 3
 // 전력망 둘로 나누기
@@ -168,7 +168,7 @@ class Solution {
 // 게임 맵 최단거리
 // BFS
 
-import java.util.*;
+/*import java.util.*;
 
 class Solution {
     public int solution(int[][] maps) {
@@ -207,4 +207,4 @@ class Solution {
         //✅ 탐색 과정에서 목적지에 도달하지 못했다면 -1을 반환한다.
         return -1;
     }
-}
+}*/
