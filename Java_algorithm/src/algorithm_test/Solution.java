@@ -47,7 +47,7 @@ class Solution {
 import java.util.*;
 
 class Solution {
-    public int[] solution(String[] id_list, String[] report, int k) {
+    public int[] solution(String[] id_list, String[] report, int k) { //report : 신고한 이용자 문자열 배열
         int[] answer = new int[id_list.length];
 
         Map<String, Set<String>> reporters = new HashMap<>(); // 각 유저가 신고한 대상
@@ -60,8 +60,8 @@ class Solution {
         }
 
         for (int i = 0; i < id_list.length; i++) {
-            Set<String> reportees = reporters.getOrDefault(id_list[i], new HashSet<>()); // 신고한 유저 목록
-            for (String user : reportees)
+            Set<String> reported = reporters.getOrDefault(id_list[i], new HashSet<>()); // 신고한 유저 목록
+            for (String user : reported)
                 if (reportCount.getOrDefault(user, 0) >= k)
                     answer[i]++;
         }
