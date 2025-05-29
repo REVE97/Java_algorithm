@@ -44,7 +44,7 @@ class Solution {
 // 신고 결과 받기
 // 집합, 맵
 
-import java.util.*;
+/*import java.util.*;
 
 class Solution {
     public int[] solution(String[] id_list, String[] report, int k) { //report : 신고한 이용자 문자열 배열
@@ -67,59 +67,45 @@ class Solution {
         }
         return answer;
     }
-}
+}*/
 
 // 3
 // 전력망 둘로 나누기
-// BFS
+// DFS
 
 /*import java.util.*;
 
 class Solution {
+    int answer;
     public int solution(int n, int[][] wires) {
-        int answer = Integer.MAX_VALUE;
-
-        for (int i = 0; i < wires.length; i++) {
-            // i번째 간선을 끊기
-            List<List<Integer>> graph = new ArrayList<>();
-            for (int j = 0; j <= n; j++) {
-                graph.add(new ArrayList<>());
-            }
-
-            for (int j = 0; j < wires.length; j++) {
-                if (i == j) continue; // i번째 간선은 끊는다
-                int a = wires[j][0];
-                int b = wires[j][1];
-                graph.get(a).add(b);
-                graph.get(b).add(a);
-            }
-
-            // 연결된 한 네트워크의 송전탑 개수 구하기
-            int count = bfs(graph, n, wires[i][0]); // 임의의 시작점
-            int diff = Math.abs(n - count - count); // 두 네트워크 차이
-            answer = Math.min(answer, diff);
+        answer = n;
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 1; i <= n; i++) {
+            graph.put(i, new ArrayList<>());
         }
+        for (int[] wire : wires) {
+            graph.get(wire[0]).add(wire[1]);
+            graph.get(wire[1]).add(wire[0]);
+        }
+
+        //✅ DFS 탐색을 수행하며 답을 구한다.
+        boolean[] visited = new boolean[n+1];
+        dfs(graph, visited, 1, n);
 
         return answer;
     }
 
-    private int bfs(List<List<Integer>> graph, int n, int start) {
-        boolean[] visited = new boolean[n + 1];
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(start);
-        visited[start] = true;
+    int dfs(Map<Integer, List<Integer>> graph, boolean[] visited, int cur, int n) {
         int count = 1;
+        visited[cur] = true;
 
-        while (!queue.isEmpty()) {
-            int now = queue.poll();
-            for (int next : graph.get(now)) {
-                if (!visited[next]) {
-                    visited[next] = true;
-                    queue.offer(next);
-                    count++;
-                }
+        for (int next : graph.get(cur)) {
+            if (!visited[next]) {
+                count += dfs(graph, visited, next, n);
             }
         }
+        //✅ 최적값을 업데이트한다.
+        answer = Math.min(answer, Math.abs(n - count * 2));
 
         return count;
     }
@@ -129,40 +115,44 @@ class Solution {
 // 단어 변환
 // BFS
 
-/*import java.util.*;
+import java.util.*;
 
 class Solution {
     public int solution(String begin, String target, String[] words) {
         Queue<String[]> queue = new ArrayDeque<>();
         boolean[] visited = new boolean[words.length];
 
-        queue.add(new String[]{begin, "0"});
-
+        queue.add(new String[]{begin, "0"}); // 초기 상태
+        
+        // BFS 탐색 시작
         while (!queue.isEmpty()) {
-            String[] cur = queue.poll();
-            String curWord = cur[0];
-            int cnt = Integer.parseInt(cur[1]);
+            String[] cur = queue.poll(); // 큐에서 단어 하나 꺼냄
+            String curWord = cur[0]; // 시작 단어 
+            int cnt = Integer.parseInt(cur[1]); // 변환 횟수
 
-            if (curWord.equals(target)) return cnt;
-
+            if (curWord.equals(target)) return cnt; // 꺼낸 단어가 target 이면 그대로 횟수 반환
+            
+            // 인접 단어 탐색 - 암기 필요
             for (int i = 0; i < words.length; i++) {
-                if (!visited[i] && getDiffCount(curWord, words[i]) == 1) {
-                    visited[i] = true;
-                    queue.add(new String[]{words[i], String.valueOf(cnt + 1)});
+                if (!visited[i] && Count(curWord, words[i]) == 1) {
+                    visited[i] = true; // 방문 처리
+                    queue.add(new String[]{words[i], String.valueOf(cnt + 1)}); // 해당 단어를 횟수 1 추가해서 추가
                 }
             }
         }
-
+        
+        // 목표 단어에 도달할 수 없는 경우 ( target 단어에 도달 x )
         return 0;
     }
-
-    int getDiffCount(String a, String b) {
+    
+    // 두 단어 사이의 다른 글자 개수 반환
+    int Count(String a, String b) {
         int diff = 0;
         for (int i = 0; i < a.length(); i++)
             if (a.charAt(i) != b.charAt(i)) diff++;
         return diff;
     }
-}*/
+}
 
 // 5
 // 게임 맵 최단거리
