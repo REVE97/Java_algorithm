@@ -793,6 +793,9 @@ public class Main {
 
 // p.11726
 // DP
+// dp[2][N] = [1][2] + [2][1] , [1][2] 는 무조건 짝수로만 채울 수 있음
+// 마지막에 1x2 -> n-1, 2x1 -> n-2
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -803,31 +806,14 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine());
-        
+        long[] dp = new long[1001];
+
+        dp[1] = 1;
+        dp[2] = 2;
+
+        for(int i=3; i<=n; i++) {
+            dp[i] = ( dp[i-1] + dp[i-2] ) % 10007;
+        }
+        System.out.println(dp[n]);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
