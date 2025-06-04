@@ -703,7 +703,7 @@ public class Main {
 // p.2606
 // BFS
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -716,10 +716,10 @@ public class Main {
         int edge = Integer.parseInt(br.readLine());     // 연결 수
 
         // map 사용 -> graph 를 map 으로 변경
-        /*Map<Integer, List<Integer>> map = new HashMap<>();
+        *//*Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 1; i <= computer; i++) {
             map.put(i, new ArrayList<>());
-        }*/
+        }*//*
         
         // 인접 리스트 사용
         List<List<Integer>> graph = new ArrayList<>();
@@ -758,5 +758,76 @@ public class Main {
         }
         System.out.println(count); // 1번 컴퓨터 제외한 감염된 컴퓨터 수 출력
     }
+}*/
+
+// p.9461
+// DP
+// n = 1,2,3 -> 1 , n>=4 -> n-2 + n-3
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int T = Integer.parseInt(br.readLine()); // 테스트케이스 수
+
+        long[] dp = new long[101];
+
+        dp[1] = 1;
+        dp[2] = 1;
+        dp[3] = 1;
+
+        for (int i = 4; i <= 100; i++) {
+            dp[i] = dp[i - 2] + dp[i - 3];
+        }
+
+        for (int i = 0; i < T; i++) {
+            int N = Integer.parseInt(br.readLine());
+            System.out.println(dp[N]);
+        }
+    }
+}*/
+
+// p.11726
+// DP
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
