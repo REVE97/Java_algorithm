@@ -793,11 +793,9 @@ public class Main {
 
 // p.11726
 // DP
-// dp[2][N] = [1][2] + [2][1] , [1][2] 는 무조건 짝수로만 채울 수 있음
 // 마지막에 1x2 -> n-1, 2x1 -> n-2
 
-
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -815,5 +813,99 @@ public class Main {
             dp[i] = ( dp[i-1] + dp[i-2] ) % 10007;
         }
         System.out.println(dp[n]);
+    }
+}*/
+
+// p.11727
+// DP
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        long[] dp = new long[1001];
+
+        dp[1] = 1;
+        dp[2] = 3;
+
+        for (int i = 3; i <= n; i++) {
+            dp[i] = ( dp[i - 1] + dp[i - 2] + dp[i - 2] ) % 10007;
+        }
+        System.out.println(dp[n]);
+    }
+}*/
+
+// p.2178
+// BFS
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static int N, M; // 미로의 세로(N), 가로(M)
+    static int[][] maze ; // 미로 정보 저장
+    static boolean[][] visited; // 방문 체크
+    static int[] dx = {-1, 1, 0, 0}; // 방향: 상, 하, 좌, 우
+    static int[] dy = {0, 0, -1, 1};
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // 첫 줄 입력: N과 M
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        // 미로 정보 및 방문 배열 초기화
+        maze = new int[N][M];
+        visited = new boolean[N][M];
+
+        // 미로 입력 처리
+        for (int i = 0; i < N; i++) {
+            String line = br.readLine(); // 공백 없는 문자열
+            for (int j = 0; j < M; j++) {
+                maze[i][j] = line.charAt(j) - '0'; // '1' 또는 '0' -> 숫자로
+            }
+        }
+
+        // BFS 실행 후 결과 출력
+        System.out.println(bfs(0, 0));
+    }
+
+    public static int bfs(int x, int y) {
+        // ArrayDeque 사용 (Queue보다 빠름)
+        Deque<int[]> deque = new ArrayDeque<>();
+        deque.offer(new int[]{x, y});
+        visited[x][y] = true;
+
+        while (!deque.isEmpty()) {
+            int[] now = deque.poll(); // 큐에서 현재 위치 꺼냄
+            int nowX = now[0];
+            int nowY = now[1];
+
+            // 상하좌우 네 방향으로 이동 시도
+            for (int i = 0; i < 4; i++) {
+                int nextX = nowX + dx[i];
+                int nextY = nowY + dy[i];
+
+                // 범위 체크 + 이동 가능 + 방문 안했을 때
+                if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < M) {
+                    if (maze[nextX][nextY] == 1 && !visited[nextX][nextY]) {
+                        deque.offer(new int[]{nextX, nextY});
+                        visited[nextX][nextY] = true;
+                        // 이전 위치 거리 + 1 저장
+                        maze[nextX][nextY] = maze[nowX][nowY] + 1;
+                    }
+                }
+            }
+        }
+
+        // 도착 지점까지의 최단 거리 반환
+        return maze[N - 1][M - 1];
     }
 }
