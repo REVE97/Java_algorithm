@@ -867,7 +867,7 @@ public class Main {
 
         // 미로 입력 처리
         for (int i = 0; i < N; i++) {
-            String line = br.readLine(); // 공백 없는 문자열
+            String line = br.readLine();
             for (int j = 0; j < M; j++) {
                 maze[i][j] = line.charAt(j) - '0'; // '1' 또는 '0' -> 숫자로
             }
@@ -878,13 +878,13 @@ public class Main {
     }
 
     public static int bfs(int x, int y) {
-        // ArrayDeque 사용 (Queue보다 빠름)
-        Deque<int[]> deque = new ArrayDeque<>();
-        deque.offer(new int[]{x, y});
+        // ArrayDeque 사용
+        Queue<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{x, y});
         visited[x][y] = true;
 
-        while (!deque.isEmpty()) {
-            int[] now = deque.poll(); // 큐에서 현재 위치 꺼냄
+        while (!queue.isEmpty()) {
+            int[] now = queue.poll(); // 큐에서 현재 위치 꺼냄
             int nowX = now[0];
             int nowY = now[1];
 
@@ -896,7 +896,7 @@ public class Main {
                 // 범위 체크 + 이동 가능 + 방문 안했을 때
                 if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < M) {
                     if (maze[nextX][nextY] == 1 && !visited[nextX][nextY]) {
-                        deque.offer(new int[]{nextX, nextY});
+                        queue.offer(new int[]{nextX, nextY});
                         visited[nextX][nextY] = true;
                         // 이전 위치 거리 + 1 저장
                         maze[nextX][nextY] = maze[nowX][nowY] + 1;
