@@ -843,7 +843,7 @@ public class Main {
 // p.2178
 // BFS
 
-import java.io.*;
+/*import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -908,4 +908,40 @@ public class Main {
         // 도착 지점까지의 최단 거리 반환
         return maze[N - 1][M - 1];
     }
-}
+}*/
+
+// p.5525
+// 문자열
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int M = Integer.parseInt(br.readLine());
+        String S = br.readLine();
+
+        int count = 0; // P_N 패턴 등장 횟수
+        int patternCount = 0; // 현재까지 IOI 패턴이 연속된 횟수
+
+        for (int i = 1; i < M - 1; ) {
+            if (S.charAt(i - 1) == 'I' && S.charAt(i) == 'O' && S.charAt(i + 1) == 'I') {
+                patternCount++;
+                if (patternCount == N) {
+                    count++;
+                    patternCount--; // 겹치기 고려
+                }
+                i += 2; // IOI이므로 2칸 전진
+            } else {
+                patternCount = 0;
+                i++; // 일치하지 않으면 한 칸 전진
+            }
+        }
+
+        System.out.println(count);
+    }
+}*/
