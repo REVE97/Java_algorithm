@@ -199,7 +199,7 @@ public class Main {
 // p.28278
 // 스택
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
@@ -243,5 +243,53 @@ public class Main {
             }
         }
         System.out.println(sb.toString());
+    }
+}*/
+
+// p.1302
+// 집합, 맵
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 책의 개수
+
+        Map<String,Integer> map = new HashMap<>();
+        Set<String> set = new HashSet<>();
+
+        for (int i = 0; i < N; i++) {
+            String s = br.readLine();
+            set.add(s);
+
+            if(map.containsKey(s)){
+                map.put(s,map.get(s)+1);
+            } else {
+                map.put(s,1);
+            }
+        }
+
+        List<String> list = new ArrayList<>(set);
+        int max = 0;
+
+        for (String s : list) {
+            max = Math.max(max,map.get(s));
+        }
+
+        List<String> list2 = new ArrayList<>();
+
+        for (String s : list) {
+            if(map.get(s) == max){
+                list2.add(s);
+            }
+        }
+
+        Collections.sort(list2);
+        System.out.println(list2.get(0));
     }
 }
