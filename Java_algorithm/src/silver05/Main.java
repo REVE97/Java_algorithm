@@ -191,7 +191,7 @@ public class Main {
 // p.10815
 // 집합, 맵
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -235,9 +235,48 @@ public class Main {
 
         System.out.println(output);
     }
+}*/
+
+// p.7785
+// 집합과 맵
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine()); // 출입기록 횟수
+
+        Map<String,String> map = new HashMap<>();
+        Set<String> set = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String a = st.nextToken();
+            String b = st.nextToken();
+
+            map.put(a,b);
+
+            if(map.get(a).equals("enter")){
+                set.add(a);
+            } else if (map.get(a).equals("leave")){
+                set.remove(a);
+            }
+        }
+
+        List<String> list = new ArrayList<>(set);
+
+        Collections.sort(list,Collections.reverseOrder());
+
+        for(String s : list){
+            System.out.println(s);
+        }
+    }
 }
-
-
 
 
 
