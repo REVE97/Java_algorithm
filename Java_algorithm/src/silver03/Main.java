@@ -61,7 +61,7 @@ public class Main {
 // p.2346
 // Deque
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -107,11 +107,89 @@ public class Main {
 
         System.out.println(sb.toString().trim());
     }
+}*/
+
+// p.2075
+// 우선순위 큐
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int[][] field = new int[N][N];
+        PriorityQueue<Integer> pq = new PriorityQueue<>(); // 우선순위 큐 생성
+
+        // 2차원 배열에 초기값 일력
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                field[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        // 우선순위 큐에 입력
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                pq.offer(field[i][j]);
+            }
+        }
+
+        for (int i = 0; i < (N*N)-N; i++) {
+            pq.poll();
+        }
+
+        System.out.println(pq.peek());
+    }
+}*/
+
+// p.14235
+// 우선순위 큐
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // 0이 들어오면 선물을 주는 곳, 0 이 아니면 거점지
+
+        int n = Integer.parseInt(br.readLine()); // 방문 횟수
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder()); // 우선순위 큐
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            int a = Integer.parseInt(st.nextToken());
+
+            if(a == 0){
+                if(!pq.isEmpty()) {
+                    sb.append(pq.poll()).append("\n");
+                } else {
+                    sb.append(-1).append("\n");
+                }
+            } else {
+                for(int j = 0; j < a; j++){
+                    pq.add(Integer.parseInt(st.nextToken()));
+                }
+            }
+        }
+
+        System.out.println(sb.toString());
+    }
 }
-
-
-
-
 
 
 
