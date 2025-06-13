@@ -945,3 +945,78 @@ public class Main {
         System.out.println(count);
     }
 }*/
+
+// p.1012
+// DFS
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main {
+    static int[][] field;          // 배추밭 정보
+    static boolean[][] visited;    // 방문 여부 체크 배열
+    static int M, N;               // 가로, 세로 크기
+
+    // 상하좌우 방향 (좌표 이동을 위한 델타 배열)
+    static int[] dx = {0, 0, -1, 1};
+    static int[] dy = {-1, 1, 0, 0};
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
+
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            M = Integer.parseInt(st.nextToken());  // 가로
+            N = Integer.parseInt(st.nextToken());  // 세로
+            int K = Integer.parseInt(st.nextToken());  // 배추 개수
+
+            field = new int[N][M];
+            visited = new boolean[N][M];
+
+            // 배추 위치 입력받아 설정
+            for (int i = 0; i < K; i++) {
+                st = new StringTokenizer(br.readLine());
+                int x = Integer.parseInt(st.nextToken());  // x 좌표 (열)
+                int y = Integer.parseInt(st.nextToken());  // y 좌표 (행)
+                field[y][x] = 1;  // 배추 있는 위치 표시
+            }
+
+            int count = 0;  // 필요한 지렁이 수
+
+            // 모든 칸을 돌면서 DFS 수행
+            for (int y = 0; y < N; y++) {
+                for (int x = 0; x < M; x++) {
+                    // 배추가 있고 방문하지 않았을 경우 DFS 수행
+                    if (field[y][x] == 1 && !visited[y][x]) {
+                        dfs(x, y);
+                        count++;  // 연결된 배추 덩어리 하나 발견 → 지렁이 수 증가
+                    }
+                }
+            }
+
+            // 결과 출력
+            System.out.println(count);
+        }
+    }
+
+    // DFS 메서드: 상하좌우 인접한 배추를 재귀적으로 방문
+    public static void dfs(int x, int y) {
+        visited[y][x] = true;  // 현재 위치 방문 표시
+
+        // 4방향 탐색
+        for (int dir = 0; dir < 4; dir++) {
+            int nx = x + dx[dir];  // 새로운 x 좌표
+            int ny = y + dy[dir];  // 새로운 y 좌표
+
+            // 배열 범위 체크 + 방문하지 않았고 배추가 있는 경우
+            if (nx >= 0 && ny >= 0 && nx < M && ny < N) {
+                if (field[ny][nx] == 1 && !visited[ny][nx]) {
+                    dfs(nx, ny);  // 인접한 배추 위치로 재귀 호출
+                }
+            }
+        }
+    }
+}
