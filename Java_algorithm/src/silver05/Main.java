@@ -240,6 +240,7 @@ public class Main {
 // p.7785
 // 집합과 맵
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -277,6 +278,54 @@ public class Main{
         }
     }
 }
+*/
+
+// p.1010
+// DP
+// NCM ?
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.util.StringTokenizer;
+
+public class Main {
+    static BigInteger[] factorial = new BigInteger[31];
+
+    public static void computeFactorials() {
+        factorial[0] = BigInteger.ONE;
+        for (int i = 1; i <= 30; i++) {
+            factorial[i] = factorial[i - 1].multiply(BigInteger.valueOf(i));
+        }
+    }
+
+    // 조합 계산: nCr = n! / (r! * (n - r)!)
+    public static BigInteger combination(int n, int r) {
+        return factorial[n].divide(factorial[r].multiply(factorial[n - r]));
+    }
+
+    public static void main(String[] args) throws IOException {
+        computeFactorials();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int N = Integer.parseInt(st.nextToken());
+            int M = Integer.parseInt(st.nextToken());
+
+            sb.append(combination(M, N)).append("\n");
+        }
+
+        System.out.print(sb);
+    }
+}
+
+
 
 
 
