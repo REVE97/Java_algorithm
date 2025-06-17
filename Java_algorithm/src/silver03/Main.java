@@ -152,7 +152,7 @@ public class Main {
 // p.14235
 // 우선순위 큐
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
@@ -185,6 +185,72 @@ public class Main{
                     pq.add(Integer.parseInt(st.nextToken()));
                 }
             }
+        }
+
+        System.out.println(sb.toString());
+    }
+}*/
+
+// p.17413
+// 스택
+
+// StringBuilder.reverse(), boolean
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String S = br.readLine();
+
+        char[] chars = S.toCharArray();
+        boolean[] isTag = new boolean[chars.length];
+
+        Stack<Character> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+
+        // 태그 범위 표시
+        boolean insideTag = false;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '<') {
+                insideTag = true;
+            }
+            if (insideTag) {
+                isTag[i] = true;
+            }
+            if (chars[i] == '>') {
+                insideTag = false;
+            }
+        }
+
+
+        for (int i = 0; i < chars.length; i++) {
+            if (isTag[i]) {
+                // 스택에 남아 있는 문자 처리 (뒤집기)
+                while (!stack.isEmpty()) {
+                    sb.append(stack.pop());
+                }
+                sb.append(chars[i]); // 태그 안은 그대로
+            } else {
+                if (chars[i] == ' ') {
+                    while (!stack.isEmpty()) {
+                        sb.append(stack.pop());
+                    }
+                    sb.append(' ');
+                } else {
+                    stack.push(chars[i]); // 단어는 뒤집기 위해 스택에 저장
+                }
+            }
+        }
+
+        // 마지막에 남은 스택 처리
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
         }
 
         System.out.println(sb.toString());
