@@ -375,7 +375,7 @@ public class Main{
 // Iterator?
 // iter.hashNext(), Set.contains(key) 사용
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
@@ -423,7 +423,79 @@ public class Main {
 
         System.out.println(result);
     }
+}*/
+
+// p.3986
+// 스택
+
+/*import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 테스트 줄 개수
+        int count = 0;
+
+        for (int i = 0; i < N; i++) {
+            String s = br.readLine();
+
+            char[] chars = s.toCharArray();
+            Stack<Character> stack = new Stack<>();
+
+            for (int j = 0; j < chars.length; j++) {
+                if(!stack.isEmpty() && stack.peek() == chars[j]) {
+                    stack.pop();
+                } else {
+                    stack.push(chars[j]);
+                }
+            }
+
+            if(stack.isEmpty()) count++;
+        }
+
+        System.out.println(count);
+    }
+}*/
+
+// p.11652
+// 맵
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        Map<Long, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < N; i++) {
+            long num = Long.parseLong(br.readLine());
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        long result = 0;
+        int maxCount = 0;
+
+        for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+            long key = entry.getKey();
+            int count = entry.getValue();
+
+            if (count > maxCount) {
+                maxCount = count;
+                result = key;
+            } else if (count == maxCount && key < result) {
+                result = key;
+            }
+        }
+
+        System.out.println(result);
+    }
 }
-
-
-
