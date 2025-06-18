@@ -298,7 +298,7 @@ public class Main {
 // p.28279
 // Deque
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -367,9 +367,63 @@ public class Main{
         }
         System.out.println(sb.toString());
     }
+}*/
+
+// p.1269
+// 집합, 맵
+
+// Iterator?
+// iter.hashNext(), Set.contains(key) 사용
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        Set<Integer> setA = new HashSet<>(); // A 집합
+        Set<Integer> setB = new HashSet<>(); // B 집합
+
+        int A  = Integer.parseInt(st.nextToken());
+        int B  = Integer.parseInt(st.nextToken());
+        int count = 0; // 교집합 원소 개수
+        int result = 0; // 결과값
+        
+        StringTokenizer stA = new StringTokenizer(br.readLine());
+        StringTokenizer stB = new StringTokenizer(br.readLine());
+        
+        // 집합에 입력값 추가
+        for(int i = 0; i < A; i++) {
+            int num = Integer.parseInt(stA.nextToken());
+            setA.add(num);
+        }
+        
+        for(int i = 0; i < B; i++) {
+            int num = Integer.parseInt(stB.nextToken());
+            setB.add(num);
+        }
+
+        Iterator<Integer> iteratorB = setB.iterator();
+
+        while(iteratorB.hasNext()) {
+            if(setA.contains(iteratorB.next())) {
+                count++;
+            }
+        }
+
+        result = (setA.size()-count) + (setB.size()-count);
+
+        System.out.println(result);
+    }
 }
-
-
 
 
 
