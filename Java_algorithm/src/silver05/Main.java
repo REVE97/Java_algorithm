@@ -284,7 +284,7 @@ public class Main{
 // DP
 // NCM ?
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
@@ -323,9 +323,41 @@ public class Main {
 
         System.out.print(sb);
     }
+}*/
+
+// p.2161
+// 큐
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+
+        Queue<Integer> q = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder(); // 결과값
+
+        // 큐에 초기값 입력
+        for (int i = 1; i <= N; i++) {
+            q.add(i);
+        }
+
+        for (int i = 0; i < N; i++) {
+            sb.append(q.poll()).append(" ");
+            if(q.size() > 1) {
+                q.add(q.poll());
+            }
+        }
+
+        System.out.println(sb.toString());
+    }
 }
-
-
 
 
 
