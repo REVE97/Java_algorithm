@@ -197,7 +197,7 @@ public class Main{
 // StringBuilder.reverse(), boolean
 
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
@@ -255,7 +255,63 @@ public class Main {
 
         System.out.println(sb.toString());
     }
+}*/
+
+// p.24511
+// 큐, 스택, 덱
+
+// 큐라면 0 스택이라면 1
+// Deque 활용
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder sb = new StringBuilder(); // 결과값
+
+        int N = Integer.parseInt(br.readLine()); // 첫째 줄
+
+        int[] used = new int[N]; // 큐인지 스택인지 판별
+        int[] arr = new int[N]; // 덱 초기값
+
+        StringTokenizer st = new StringTokenizer(br.readLine()); // 둘째 줄
+        for (int i = 0; i < N; i++) {
+            used[i] = Integer.parseInt(st.nextToken());
+        }
+
+        st = new StringTokenizer(br.readLine()); // 셋째 줄
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int M = Integer.parseInt(br.readLine()); // 넷째 줄
+        int[] el = new int[M]; // 삽입할 원소
+
+        st = new StringTokenizer(br.readLine()); // 다섯째 줄
+        for (int i = 0; i < M; i++) {
+            el[i] = Integer.parseInt(st.nextToken());
+        }
+
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        for (int i = 0; i < N; i++) {
+            if (used[i] == 0) {
+                dq.addFirst(arr[i]);
+            }
+        }
+
+        for (int i = 0; i < M; i++) {
+            dq.addLast(el[i]);
+            sb.append(dq.pop()).append(" ");
+        }
+
+        System.out.println(sb.toString());
+    }
 }
-
-
 
