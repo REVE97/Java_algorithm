@@ -262,7 +262,7 @@ public class Main {
 
 // 큐라면 0 스택이라면 1
 // Deque 활용
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -313,5 +313,55 @@ public class Main {
 
         System.out.println(sb.toString());
     }
-}
+}*/
 
+// p.18115
+// Deque
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine()); // 카드 개수
+
+        int[] skills = new int[N]; // 기술 번호 입력
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            skills[i] = Integer.parseInt(st.nextToken());
+        }
+
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        // 기술을 뒤에서부터 적용 (카드 N부터 1까지)
+        for (int i = N - 1; i >= 0; i--) {
+            int card = N - i; // 현재 넣을 카드 번호
+
+            if (skills[i] == 1) {
+                dq.addFirst(card);
+            } else if (skills[i] == 2) {
+                // 앞에서 두 번째 위치에 삽입
+                int first = dq.pollFirst();
+                dq.addFirst(card);
+                if (first != 0) {
+                    dq.addFirst(first);
+                }
+            } else if (skills[i] == 3) {
+                dq.addLast(card);
+            }
+        }
+
+        // 출력
+        StringBuilder sb = new StringBuilder();
+        for (int num : dq) {
+            sb.append(num).append(" ");
+        }
+        System.out.println(sb.toString().trim());
+    }
+}
