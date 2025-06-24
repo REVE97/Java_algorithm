@@ -464,7 +464,7 @@ public class Main {
 // p.11652
 // 맵
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -497,5 +497,73 @@ public class Main {
         }
 
         System.out.println(result);
+    }
+}*/
+
+// p.16173
+// BFS
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        int[][] graph = new int[N][N];
+        boolean[][] visited = new boolean[N][N];
+
+        // 게임판 입력 받기
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                graph[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        // BFS 탐색
+        Queue<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{0, 0});
+        visited[0][0] = true;
+        boolean success = false;
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.remove();
+            int x = current[0];
+            int y = current[1];
+            int jump = graph[x][y];
+
+            // 목적지 도착
+            if (x == N - 1 && y == N - 1) {
+                success = true;
+                break;
+            }
+
+            // 오른쪽 이동
+            int ny = y + jump;
+            if (ny < N && !visited[x][ny]) {
+                visited[x][ny] = true;
+                queue.offer(new int[]{x, ny});
+            }
+
+            // 아래쪽 이동
+            int nx = x + jump;
+            if (nx < N && !visited[nx][y]) {
+                visited[nx][y] = true;
+                queue.offer(new int[]{nx, y});
+            }
+        }
+
+        // 결과 출력
+        if (success) {
+            System.out.println("HaruHaru");
+        } else {
+            System.out.println("Hing");
+        }
     }
 }
