@@ -1,6 +1,5 @@
 package silver01;
 
-
 // p.1932
 // DP
 
@@ -52,4 +51,3 @@ public class Main {
         System.out.println(max);
     }
 }
-
