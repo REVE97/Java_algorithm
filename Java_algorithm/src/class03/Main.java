@@ -1024,7 +1024,7 @@ public class Main {
 // p.17626
 // DP
 
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -1044,5 +1044,26 @@ public class Main {
         }
         System.out.println(dp[n]);
     }
-}
+}*/
 
+// p.2606 ver2
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int com = Integer.parseInt(br.readLine()); // 컴퓨터 수
+        int line = Integer.parseInt(br.readLine()); // 간선
+
+        boolean[] vir = new boolean[com+1]; // 바이러스 유무
+        vir[1] = true; // 1번 컴퓨터는 감염
+
+        List<List<Integer>> list = new ArrayList<>(); // 인접리스트
+        
+    }
+}
